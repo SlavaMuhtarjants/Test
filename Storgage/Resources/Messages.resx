@@ -1,0 +1,461 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AuthSuccess" xml:space="preserve">
+    <value>Authentication is succcess.</value>
+  </data>
+  <data name="ChatNotFound" xml:space="preserve">
+    <value>Chat with identifier {0} not found. Maybe chat was removed.</value>
+  </data>
+  <data name="EqualLongitudes" xml:space="preserve">
+    <value>West and East longitudes shouldn't be equals.</value>
+  </data>
+  <data name="InvalidDistance" xml:space="preserve">
+    <value>Distance shouldn't be negative.</value>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>Invalid email '{0}' format.</value>
+  </data>
+  <data name="InvalidLatitude" xml:space="preserve">
+    <value>Latitude {0} is invalid value. Latitude should be between {1} and {2}.</value>
+  </data>
+  <data name="InvalidLatitudeDifference" xml:space="preserve">
+    <value>North latitude should be higher than south.</value>
+  </data>
+  <data name="InvalidLongitude" xml:space="preserve">
+    <value>Longitude {0} is invalid value. Longitude should be between {1} and {2}.</value>
+  </data>
+  <data name="InvalidQueryParameterType" xml:space="preserve">
+    <value>Cannot convert value "{0}" of parameter "{1}" to type "{2}" for action "{3}";</value>
+  </data>
+  <data name="InvalidLimit" xml:space="preserve">
+    <value>Limit value shouldn't be negative.</value>
+  </data>
+  <data name="InvalidSpaceMinRate" xml:space="preserve">
+    <value>MinRate value shouldn't be negative.</value>
+  </data>
+  <data name="InvalidOffset" xml:space="preserve">
+    <value>Offset value shouldn't be negative.</value>
+  </data>
+  <data name="InvalidSpaceRateRange" xml:space="preserve">
+    <value>MaxRate value should be higher than minRate.</value>
+  </data>
+  <data name="InvalidUserCredentials" xml:space="preserve">
+    <value>The user name or password is incorrect.</value>
+  </data>
+  <data name="UserIsBlockedTill" xml:space="preserve">
+    <value>User is blocked till {0}.</value>
+  </data>
+  <data name="UserIncorrectPassword" xml:space="preserve">
+    <value>Password is incorrect. Attempt {0}. Max amount of attempt is {1}</value>
+  </data>
+  <data name="InvalidZip" xml:space="preserve">
+    <value>Zip shouldn't be empty or zip code with value {0} not found</value>
+  </data>
+  <data name="MessageNotFound" xml:space="preserve">
+    <value>Message with identifier {0} not found. Maybe message was removed.</value>
+  </data>
+  <data name="MissedQueryParameter" xml:space="preserve">
+    <value>Cannot find parameter '{0}' in action '{1}';</value>
+  </data>
+  <data name="PostBodyCannotBeNull" xml:space="preserve">
+    <value>Post body request is empty or cannot be deserialized. Please see model schema.</value>
+  </data>
+  <data name="UnsupportedMediaType" xml:space="preserve">
+    <value>Unsupported media type.</value>
+  </data>
+  <data name="SpaceNotFound" xml:space="preserve">
+    <value>Space with identifier {0} not found. Maybe space was removed.</value>
+  </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>User with identifier {0} not found. Maybe user was removed.</value>
+  </data>
+  <data name="UniqueEmailError" xml:space="preserve">
+    <value>Email address must be unique. Maybe another user already uses this email.</value>
+  </data>
+  <data name="InternalUserMustHaveEmailAndPhone" xml:space="preserve">
+    <value>Internal user must have email and phone. External users (facebook user) may don't have them.</value>
+  </data>
+  <data name="UniqueFacebookIdError" xml:space="preserve">
+    <value>Facebook Id must be unique. Maybe another user already uses this Facebook Id.</value>
+  </data>
+  <data name="FacebookTokenError" xml:space="preserve">
+    <value>Facebook token is incorrect.</value>
+  </data>
+  <data name="UploadFileError" xml:space="preserve">
+    <value>Problems occurred when uploading file to Amazon S3 bucket.</value>
+  </data>
+  <data name="MaximumPhotoForStorage" xml:space="preserve">
+    <value>The maximum allowed images count is {0}. Uploaded {1}. Trying to upload {2}.</value>
+  </data>
+  <data name="MaximumImageLength" xml:space="preserve">
+    <value>The maximum allowed images length is {0} bytes. Trying to upload {1} bytes.</value>
+  </data>
+  <data name="AccessDenied" xml:space="preserve">
+    <value>Access denied for current resource.</value>
+  </data>
+  <data name="CannotChangeStatus" xml:space="preserve">
+    <value>You cannot approve or reject non pending offer.</value>
+  </data>
+  <data name="DeleteFileError" xml:space="preserve">
+    <value>Problems occurred when deleting file from Amazon S3 bucket. But rows from database removed.</value>
+  </data>
+  <data name="ChatAlwaysExist" xml:space="preserve">
+    <value>You alwas have chat this owner.</value>
+  </data>
+  <data name="UserDesntHaveAccessToThisChat" xml:space="preserve">
+    <value>User doesn't have access to this chat.</value>
+  </data>
+  <data name="ChatClosedForNewOffer" xml:space="preserve">
+    <value>Chat has approved or stopped offer. You cannot post another offers, but you can post messages.</value>
+  </data>
+  <data name="ChatClosedForNewMessage" xml:space="preserve">
+    <value>Chat has offer with rejected status. You cannot post messages or another offers to this chat.</value>
+  </data>
+  <data name="InvalidListOfPhotoForDelete" xml:space="preserve">
+    <value>You should send request with not empty list of photo for delete.</value>
+  </data>
+  <data name="InvalidAvatarUpload" xml:space="preserve">
+    <value>You should upload just one photo for avatar, but trying to upload {0}.</value>
+  </data>
+  <data name="SingleFileMustBeAttached" xml:space="preserve">
+     <value>You can and must upload single file only.</value>
+  </data>
+  <data name="PostMessagesBadFormat" xml:space="preserve">
+    <value>You can post only message or offer.</value>
+  </data>
+  <data name="UserNotFoundByEmail" xml:space="preserve">
+    <value>User with email {0} not found. Check email and try again.</value>
+  </data>
+  <data name="ExternalUserCanNotSetPassword" xml:space="preserve">
+    <value>External user can not set password.</value>
+  </data>
+  <data name="InvalidPasswordConfirmation" xml:space="preserve">
+    <value>The password and confirmation password do not match.</value>
+  </data>
+  <data name="DeviceTokenNotFound" xml:space="preserve">
+    <value>Device token {0} not found.</value>
+  </data>
+  <data name="CreateMobileEndpointError" xml:space="preserve">
+    <value>Error during the mobile endpoint creating. Status code: {0}.</value>
+  </data>
+  <data name="CreateMobileEndpointException" xml:space="preserve">
+    <value>Critical error during the mobile endpoint creating. See log to get detail exception.</value>
+  </data>
+  <data name="RemoveMobileEndpointError" xml:space="preserve">
+    <value>Error during the mobile endpoint removing. Status code: {0}.</value>
+  </data>
+  <data name="RemoveMobileEnpointException" xml:space="preserve">
+    <value>Critical error during the mobile endpoint removing. See log to get detail exception.</value>
+  </data>
+  <data name="SendMessageError" xml:space="preserve">
+    <value>Error during the message sending. Status code: {0}</value>
+  </data>
+  <data name="SendMessageException" xml:space="preserve">
+    <value>Critical error durring the message sending. See log to get detail exception.</value>
+  </data>
+  <data name="SerializerMessageException" xml:space="preserve">
+    <value>Critical error durring the message serializing. See log to get detail exception.</value>
+  </data>
+  <data name="NewMessagesNotification" xml:space="preserve">
+    <value>You have a new message from {0} {1}.</value>
+  </data>
+  <data name="NewOfferNotification" xml:space="preserve">
+    <value>You have a new offer from {0} {1}.</value>
+  </data>
+  <data name="OfferWasApprovedNotification" xml:space="preserve">
+    <value>Your offer was approved by {0} {1}.</value>
+  </data>
+  <data name="OfferWasExpiredNotification" xml:space="preserve">
+    <value>Your offer was expired.</value>
+  </data>
+  <data name="OfferWasRejectedNotification" xml:space="preserve">
+    <value>Offer was rejected by {0} {1}.</value>
+  </data>
+  <data name="OfferWasStoppedNotification" xml:space="preserve">
+    <value>Offer was stopped by {0} {1}.</value>
+  </data>
+  <data name="NewChatStartedNotification" xml:space="preserve">
+    <value>{0} {1} started new chat with you.</value>
+  </data>
+  <data name="DeviceTokenAlwaysExist" xml:space="preserve">
+    <value>Device token {0} always exist.</value>
+  </data>
+  <data name="DeviceTokenEmpty" xml:space="preserve">
+    <value>Device token cannot be empty.</value>
+  </data>
+  <data name="CreateTopicError" xml:space="preserve">
+    <value>Error during the topic error creating. Status code: {0}.</value>
+  </data>
+  <data name="RemoveTopicError" xml:space="preserve">
+    <value>Error during the topic removing. Status code: {0}.</value>
+  </data>
+  <data name="SubscribeMobileEndpointError" xml:space="preserve">
+    <value>Error durring the mobile endpoint subscription. Status code: {0}.</value>
+  </data>
+  <data name="UnsubscribeMobileEndointError" xml:space="preserve">
+    <value>Error during the mobile endpoint unsubscription. Status code: {0}.</value>
+  </data>
+  <data name="ConfirmEmailSubject" xml:space="preserve">
+    <value>[Storgage] Confirm email.</value>
+  </data>
+  <data name="ResetPasswordEmailSubject" xml:space="preserve">
+    <value>[Storgage] Reset Password.</value>
+  </data>
+  <data name="UserEmailActuallyConfirmed" xml:space="preserve">
+    <value>User email was confirmed earlier.</value>
+  </data>
+  <data name="UserHaveNoEmail" xml:space="preserve">
+    <value>User doesn't have Email. Set email and try again.</value>
+  </data>
+  <data name="UserEmailNotConfirmed" xml:space="preserve">
+    <value>User email doesn't confirmed. You should confirm it before using forgot password method.</value>
+  </data>
+  <data name="StopStatusError" xml:space="preserve">
+    <value>You cannot stop status. You can stop only approved status.</value>
+  </data>
+  <data name="UserHaveNoPhone" xml:space="preserve">
+    <value>User doesn't have phone. Set phone number and try again.</value>
+  </data>
+  <data name="UserPhoneActuallyConfirmed" xml:space="preserve">
+    <value>User phone was confirmed earlier.</value>
+  </data>
+  <data name="EmailConfirmSuccess" xml:space="preserve">
+    <value>Thank you for confirming your email.</value>
+  </data>
+  <data name="OfferNotFound" xml:space="preserve">
+    <value>Offer with identifier {0} not found.</value>
+  </data>
+  <data name="RatingNotFound" xml:space="preserve">
+    <value>Rating with identifier not found.</value>
+  </data>
+  <data name="RateOfferError" xml:space="preserve">
+    <value>Cannot rate user offer if it does not have status 'Stopped'.</value>
+  </data>
+  <data name="AbuseTypeRequired" xml:space="preserve">
+    <value>Cannot post an abuse without any abuse reasons in 'AbuseType' array.</value>
+  </data>
+  <data name="RatingWasPostedAlways" xml:space="preserve">
+    <value>You posted rating for this offer early.</value>
+  </data>
+  <data name="SpaceDoesntExist" xml:space="preserve">
+    <value>Space with Id = {0} does not exist.</value>
+  </data>
+  <data name="RatingDoesntExist" xml:space="preserve">
+    <value>Rating with Id = {0} does not exist.</value>
+  </data>
+
+  <data name="SpaceIsOccupied" xml:space="preserve">
+    <value>We can not change IsListed from false to true when IsOccupied is true</value>
+  </data>
+  
+  <data name="AbuseTypeUnique" xml:space="preserve">
+    <value>Abuse type can not be duplicated for single abuse.</value>
+  </data>
+  <data name="AbuseDoesntExist" xml:space="preserve">
+    <value>Abuse with Id = {0} does not exist.</value>
+  </data>
+  <data name="ReplyOnRatingEmptyError" xml:space="preserve">
+    <value>Reply on rating cannot be null or empty.</value>
+  </data>
+  <data name="AmazonException" xml:space="preserve">
+    <value>Exception with Amazon service.</value>
+  </data>
+  <data name="PhoneVerificationCodeInvalid" xml:space="preserve">
+    <value>Phone verification code is incorrect.</value>
+  </data>
+  <data name="SmsVerificationMessage" xml:space="preserve">
+    <value>[STORGAGE] Your security code is: {0}</value>
+  </data>
+  <data name="BadRentSinceDate" xml:space="preserve">
+    <value>Offer rent date cannot start earlier than now or be later that the end date.</value>
+  </data>
+  <data name="OfferPendingStatusRequired" xml:space="preserve">
+    <value>Rent start date can only be changed for offer in pending state</value>
+  </data>
+  <data name="ChatNotExistForSpace" xml:space="preserve">
+    <value>The user with identifier {0} has not begun a chat with a host of space with identifier {1}.</value>
+  </data>
+  <data name="SpaceIsNotActiveOrDeleted" xml:space="preserve">
+    <value>Space with identifier {0} is not listed or was deleted. </value>
+  </data>
+  <data name="FileExists" xml:space="preserve">
+    <value>File "{0}" exists.</value>
+  </data>
+  <data name="InvalidRefreshTokenUser" xml:space="preserve">
+    <value>User "{0}" doesn't have refresh token "{1}".</value>
+  </data>
+  <data name="RefreshTokenNotFound" xml:space="preserve">
+    <value>Refresh token with identifier "{0}" not found. </value>
+  </data>
+  <data name="BadFilterRentStartDate" xml:space="preserve">
+    <value>The lease cannot start in past.</value>
+  </data>
+  <data name="BoundingBoxAreaExceedsLimit" xml:space="preserve">
+    <value>The geographic area you have specified is too large. Please set more specific area.</value>
+  </data>
+  <data name="BoundingBoxMustBeSurface" xml:space="preserve">
+    <value>The geographic coordinates do not represent a surface.</value>
+  </data>
+  <data name="FilterNotFound" xml:space="preserve">
+    <value>Filter with identifier {0} not found. Maybe the filter was removed.</value>
+  </data>
+  <data name="LocationTooLong" xml:space="preserve">
+    <value>The length of location should not exceed {0} characters.</value>
+  </data>
+  <data name="ZipCodeTooLong" xml:space="preserve">
+    <value>The length of zip code should not exceed {0} characters.</value>
+  </data>
+  <data name="RelevantSpacesNotification" xml:space="preserve">
+    <value>{0} spaces match your search conditions. Check them!</value>
+  </data>
+  <data name="IncomingParameterRequired" xml:space="preserve">
+    <value>The request parameter should not be empty.</value>
+  </data>
+  <data name="BankAccountNotFound" xml:space="preserve">
+    <value>User doesn't have bank account yet.</value>
+  </data>
+  <data name="InvalidSpaceMaxRate" xml:space="preserve">
+    <value>MaxRate value shouldn't be negative.</value>
+  </data>
+  <data name="DuplicatesNotAllowed" xml:space="preserve">
+    <value>Duplicates are not allowed in the {0} collection.</value>
+  </data>
+  <data name="CardNotFound" xml:space="preserve">
+    <value>Card with identifier "{0}" not found. Maybe card was removed.</value>
+  </data>
+  <data name="GetEndpointAttributesError" xml:space="preserve">
+    <value>Get endpoint attributes operation is failed with status {0}.</value>
+  </data>
+  <data name="GetEndpointAttributesException" xml:space="preserve">
+    <value>Unhandled exception during the get endpoint attributes. See log to get detailed information.</value>
+  </data>
+  <data name="BankAccountAlreadyExists" xml:space="preserve">
+    <value>User already have bank account. We can't create new before deleting exists.</value>
+  </data>
+  <data name="InvalidPriceFormat" xml:space="preserve">
+    <value>Invalid price format, only two digits after point.</value>
+  </data>
+  <data name="DebitCardNotFound" xml:space="preserve">
+    <value>User doesn't have debit card yet.</value>
+  </data>
+  <data name="StripeDisabledAccount" xml:space="preserve">
+    <value>You account was rejected. Reason: {0}.</value>
+  </data>
+</root>

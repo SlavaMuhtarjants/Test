@@ -1,0 +1,14 @@
+*.obj
+*.exe
+*.dll
+packages
+obj
+bin
+/Storgage/.vs/Storgage/v14/*.suo
+/Storgage/RestApi/logs
+/Storgage/*.suo
+/Storgage/RestApi/*.user
+/Storgage/RestApi/Properties/PublishProfiles/*.pubxml
+*.user
+.vs
+/Storgage/Model/App.config

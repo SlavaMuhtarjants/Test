@@ -1,0 +1,24 @@
+﻿@model Guid
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Share space</title>
+
+        <script type="text/javascript">
+            (function()
+            {
+                window.location.replace('storgage://open/' + "@Model");
+            })();
+        </script>
+    </head>
+    <body>
+    
+    </body>
+</html>

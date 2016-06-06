@@ -1,0 +1,1 @@
+﻿Alter Table Rating Add RepliedAt datetimeoffset

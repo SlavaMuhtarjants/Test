@@ -1,0 +1,19 @@
+﻿@model Weezlabs.Storgage.DataTransferObjects.ViewModels.Account.ConfirmEmailViewModel
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <div>
+        Someone requested that the email for you Storgage account be confirm.
+    </div>
+    <br /><br />
+    <div>
+        Copyable link: <a href='@Model.Link'>@Model.Link</a>
+    </div>
+    <br /><br />
+    <div align="justify">This link good until @String.Format("R: {0:R}", @Model.Expired) and can only be used once.</div>
+    <br /><br />
+    <div>If you didn't request this, you can ignore this email or let us know.</div>
+</body>
+</html>

@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{975A3CD8-64CA-4AD3-9753-3A0B48CC6E13}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Weezlabs.Storgage.DataLayer</RootNamespace>
+    <AssemblyName>Weezlabs.Storgage.DataLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <CodeContractsAssemblyMode>0</CodeContractsAssemblyMode>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeContractsEnableRuntimeChecking>True</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
+    <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
+    <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
+    <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
+    <CodeContractsRunCodeAnalysis>True</CodeContractsRunCodeAnalysis>
+    <CodeContractsNonNullObligations>True</CodeContractsNonNullObligations>
+    <CodeContractsBoundsObligations>True</CodeContractsBoundsObligations>
+    <CodeContractsArithmeticObligations>True</CodeContractsArithmeticObligations>
+    <CodeContractsEnumObligations>True</CodeContractsEnumObligations>
+    <CodeContractsRedundantAssumptions>True</CodeContractsRedundantAssumptions>
+    <CodeContractsAssertsToContractsCheckBox>True</CodeContractsAssertsToContractsCheckBox>
+    <CodeContractsRedundantTests>True</CodeContractsRedundantTests>
+    <CodeContractsMissingPublicRequiresAsWarnings>True</CodeContractsMissingPublicRequiresAsWarnings>
+    <CodeContractsMissingPublicEnsuresAsWarnings>False</CodeContractsMissingPublicEnsuresAsWarnings>
+    <CodeContractsInferRequires>True</CodeContractsInferRequires>
+    <CodeContractsInferEnsures>False</CodeContractsInferEnsures>
+    <CodeContractsInferEnsuresAutoProperties>True</CodeContractsInferEnsuresAutoProperties>
+    <CodeContractsInferObjectInvariants>False</CodeContractsInferObjectInvariants>
+    <CodeContractsSuggestAssumptions>False</CodeContractsSuggestAssumptions>
+    <CodeContractsSuggestAssumptionsForCallees>False</CodeContractsSuggestAssumptionsForCallees>
+    <CodeContractsSuggestRequires>False</CodeContractsSuggestRequires>
+    <CodeContractsNecessaryEnsures>True</CodeContractsNecessaryEnsures>
+    <CodeContractsSuggestObjectInvariants>False</CodeContractsSuggestObjectInvariants>
+    <CodeContractsSuggestReadonly>True</CodeContractsSuggestReadonly>
+    <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
+    <CodeContractsShowSquigglies>True</CodeContractsShowSquigglies>
+    <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
+    <CodeContractsEmitXMLDocs>False</CodeContractsEmitXMLDocs>
+    <CodeContractsCustomRewriterAssembly />
+    <CodeContractsCustomRewriterClass />
+    <CodeContractsLibPaths />
+    <CodeContractsExtraRewriteOptions />
+    <CodeContractsExtraAnalysisOptions />
+    <CodeContractsSQLServerOption />
+    <CodeContractsBaseLineFile />
+    <CodeContractsCacheAnalysisResults>True</CodeContractsCacheAnalysisResults>
+    <CodeContractsSkipAnalysisIfCannotConnectToCache>False</CodeContractsSkipAnalysisIfCannotConnectToCache>
+    <CodeContractsFailBuildOnWarnings>False</CodeContractsFailBuildOnWarnings>
+    <CodeContractsBeingOptimisticOnExternal>True</CodeContractsBeingOptimisticOnExternal>
+    <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
+    <CodeContractsReferenceAssembly>%28none%29</CodeContractsReferenceAssembly>
+    <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Stage|AnyCPU'">
+    <OutputPath>bin\Stage\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.Extended, Version=6.0.0.0, Culture=neutral, PublicKeyToken=05b7e29bdd433584, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Extended.6.1.0.168\lib\net45\EntityFramework.Extended.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.Triggers, Version=5.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Triggers.5.4.0\lib\net45\EntityFramework.Triggers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.TypedOriginalValues, Version=0.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.TypedOriginalValues.0.3.1\lib\net40\EntityFramework.TypedOriginalValues.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.2.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.2.0\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abuse\AbuseRepository.cs" />
+    <Compile Include="Abuse\IAbuseRepository.cs" />
+    <Compile Include="BaseReadonlyRepository.cs" />
+    <Compile Include="BaseRepository.cs" />
+    <Compile Include="ChatAndMessages\ChatMemberRepository.cs" />
+    <Compile Include="ChatAndMessages\ChatRepository.cs" />
+    <Compile Include="ChatAndMessages\IChatMemberRepository.cs" />
+    <Compile Include="ChatAndMessages\IChatRepository.cs" />
+    <Compile Include="ChatAndMessages\IMessageRepository.cs" />
+    <Compile Include="ChatAndMessages\IOfferHistoryRepository.cs" />
+    <Compile Include="ChatAndMessages\IOfferRepository.cs" />
+    <Compile Include="ChatAndMessages\MessageRepository.cs" />
+    <Compile Include="ChatAndMessages\OfferHistoryRepository.cs" />
+    <Compile Include="ChatAndMessages\OfferRepository.cs" />
+    <Compile Include="Dictionaries\AbuseTypeDictionaryRepository.cs" />
+    <Compile Include="Dictionaries\DictionaryEnumExtension.cs" />
+    <Compile Include="Dictionaries\DictionaryProvider.cs" />
+    <Compile Include="Dictionaries\EmailVerificationStatusRepository.cs" />
+    <Compile Include="Dictionaries\IAbuseTypeDictionaryReadonlyRepository.cs" />
+    <Compile Include="Dictionaries\IDictionaryProvider.cs" />
+    <Compile Include="Dictionaries\IEmailVerificationStatusReadonlyRepository.cs" />
+    <Compile Include="Dictionaries\IMessageDeliveredStatusReadonlyRepository.cs" />
+    <Compile Include="Dictionaries\IMessageOfferStatusReadonlyRepository.cs" />
+    <Compile Include="Dictionaries\IPaymentPointTypeReadonlyRepository.cs" />
+    <Compile Include="Dictionaries\IPhoneVerificationStatusReadonlyRepository.cs" />
+    <Compile Include="Dictionaries\IRentPeriodTypeReadonlyRepository.cs" />
+    <Compile Include="Dictionaries\ISpaceAccessTypeReadonlyRepository.cs" />
+    <Compile Include="Dictionaries\ISpaceTypeReadonlyRepository.cs" />
+    <Compile Include="Dictionaries\MessageDeliveredStatusRepository.cs" />
+    <Compile Include="Dictionaries\MessageeOfferStatusReadonlyRepository.cs" />
+    <Compile Include="Dictionaries\PaymentPointTypeRepository.cs" />
+    <Compile Include="Dictionaries\RentPeriodTypeReadonlyRepository.cs" />
+    <Compile Include="Filters\FilterDictionaryRepository.cs" />
+    <Compile Include="Filters\IFilterDictionaryReadonlyRepository.cs" />
+    <Compile Include="Filters\IFilterRepository.cs" />
+    <Compile Include="IReadonlyRepository.cs" />
+    <Compile Include="IRepository.cs" />
+    <Compile Include="Dictionaries\ISizeTypeReadonlyRepository.cs" />
+    <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="Dictionaries\SpaceAccessTypeRepository.cs" />
+    <Compile Include="Dictionaries\PhoneVerificationStatusRepository.cs" />
+    <Compile Include="Dictionaries\SizeTypeRepository.cs" />
+    <Compile Include="Dictionaries\SpaceTypeRepository.cs" />
+    <Compile Include="Photo\IPhotoRepository.cs" />
+    <Compile Include="Photo\PhotoRepository.cs" />
+    <Compile Include="Filters\FilterRepository.cs" />
+    <Compile Include="Filters\IFilterReadonlyRepository.cs" />
+    <Compile Include="Spaces\ISpaceRepository.cs" />
+    <Compile Include="Spaces\IZipRepository.cs" />
+    <Compile Include="Spaces\ZipRepository.cs" />
+    <Compile Include="Users\IRefreshTokenRepository.cs" />
+    <Compile Include="Users\IUserDeviceRepository.cs" />
+    <Compile Include="Users\IUserReadonlyRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ratings\IRatingRepository.cs" />
+    <Compile Include="Ratings\RatingRepository.cs" />
+    <Compile Include="Spaces\ISpaceReadonlyRepository.cs" />
+    <Compile Include="Spaces\SpaceRepository.cs" />
+    <Compile Include="UnitOfWork.cs" />
+    <Compile Include="Users\IUserRepository.cs" />
+    <Compile Include="Users\RefreshTokenRepository.cs" />
+    <Compile Include="Users\UserDeviceRepository.cs" />
+    <Compile Include="Users\UserReadonlyRepository.cs" />
+    <Compile Include="Users\UserRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Caching\Caching.csproj">
+      <Project>{201708db-b6a4-429b-a1a2-fa20dff99334}</Project>
+      <Name>Caching</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IoC\IoC.csproj">
+      <Project>{b1f07ed5-940b-4488-b5c7-d32f460195e9}</Project>
+      <Name>IoC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{aeef63ba-ae04-4475-9b0b-5c53c57b27d5}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

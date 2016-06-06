@@ -1,0 +1,3058 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="storgageModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Abuse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Message" Type="nvarchar" MaxLength="300" />
+          <Property Name="ReportedAt" Type="datetimeoffset" Precision="7" StoreGeneratedPattern="Computed" />
+          <Property Name="ReporterId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="AbuseRating">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AbuseId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RatingId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AbuseSpace">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AbuseId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SpaceId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AbuseType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AbuseId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TypeId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AbuseTypeDictionary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Synonym" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Chat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SpaceId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ApprovedMessageOfferHistoryId" Type="uniqueidentifier" StoreGeneratedPattern="Computed" />
+          <Property Name="LastMessageOfferId" Type="uniqueidentifier" StoreGeneratedPattern="Computed" />
+          <Property Name="LastModified" Type="datetimeoffset" Precision="7" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="ChatMember">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ChatId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AmountUnreadMessages" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailVerificationStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="Synonym" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Filter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BoundingBox" Type="geography" Nullable="false" />
+          <Property Name="MinPrice" Type="money" />
+          <Property Name="MaxPrice" Type="money" />
+          <Property Name="RentStartDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="CheckSizeType" Type="bit" Nullable="false" />
+          <Property Name="CheckType" Type="bit" Nullable="false" />
+          <Property Name="CheckAccessType" Type="bit" Nullable="false" />
+          <Property Name="Location" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ZipCodeId" Type="uniqueidentifier" />
+          <Property Name="TopLatitude" Type="float" Nullable="false" />
+          <Property Name="BottomLatitude" Type="float" Nullable="false" />
+          <Property Name="LeftLongitude" Type="float" Nullable="false" />
+          <Property Name="RightLongitude" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FilterRootDictionary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RootDictionaryId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FilterId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="ProcessedDate" Type="datetimeoffset" Precision="7" />
+          <Property Name="Amount" Type="money" Nullable="false" />
+          <Property Name="SpaceId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SenderId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RecepientToken" Type="nvarchar" MaxLength="50" />
+          <Property Name="SenderToken" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ChatId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ReceivedDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="SentDate" Type="datetimeoffset" Precision="7" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="Message" Type="nvarchar" MaxLength="300" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DeliveredStatusId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MessageDeliveredStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Synonym" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="MessageOffer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Rate" Type="money" Nullable="false" />
+          <Property Name="RentPeriodId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CurretMessageOfferHistory" Type="uniqueidentifier" />
+          <Property Name="StopAt" Type="datetimeoffset" Precision="7" StoreGeneratedPattern="Computed" />
+          <Property Name="RentSince" Type="datetimeoffset" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MessageOfferHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MessageOfferId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StatusId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ChangedStatusDate" Type="datetimeoffset" Precision="7" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="MessageOfferStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Synonym" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PaymentPoint">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Number" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TypeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PaymentSystemId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentPointType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="Synonym" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PhoneVerificationStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="Synonym" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PhotoLibrary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Link" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="SpaceId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rating">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Rank" Type="int" Nullable="false" />
+          <Property Name="Message" Type="nvarchar" MaxLength="300" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="SpaceOwnerReply" Type="nvarchar" MaxLength="300" />
+          <Property Name="RepliedAt" Type="datetimeoffset" Precision="7" />
+        </EntityType>
+        <EntityType Name="Receipt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="InvoiceId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="SentDate" Type="datetimeoffset" Precision="7" />
+          <Property Name="StripeTransactionId" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RefreshToken">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Issued" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="Expired" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="ProtectedTicket" Type="nvarchar" MaxLength="512" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RentPeriodType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" />
+          <Property Name="Synonym" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RootDictionary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SizeType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Synonym" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Space">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SizeTypeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SpaceAccessTypeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Decription" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsListed" Type="bit" Nullable="false" />
+          <Property Name="SpaceTypeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Location" Type="geography" Nullable="false" />
+          <Property Name="DefaultPhotoID" Type="uniqueidentifier" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="createdDate" Type="datetimeoffset" Precision="7" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="Rate" Type="money" Nullable="false" />
+          <Property Name="FullAddress" Type="nvarchar" MaxLength="100" />
+          <Property Name="ShortAddress" Type="nvarchar" MaxLength="100" />
+          <Property Name="ZipId" Type="uniqueidentifier" />
+          <Property Name="AvailableSince" Type="datetimeoffset" Precision="7" />
+          <Property Name="LastModified" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="Latitude" Type="float" Nullable="false" />
+          <Property Name="Longitude" Type="float" Nullable="false" />
+          <Property Name="IsOccupied" Type="bit" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="SpaceAccessType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="Synonym" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="SpaceBusy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SpaceId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StartDate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="EndDate" Type="datetimeoffset" Precision="7" />
+          <Property Name="NextSpaceBusyID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="SpaceType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="Synonym" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="TrainingSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Size" Type="int" Nullable="false" />
+          <Property Name="ZipId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="Accessebility" Type="int" Nullable="false" />
+          <Property Name="Rate" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="Password" Type="nvarchar" MaxLength="256" />
+          <Property Name="Phone" Type="varchar" MaxLength="15" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="PaymentSystemSecret" Type="nvarchar" MaxLength="50" />
+          <Property Name="AvgRate" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="PhoneVerificationStatusID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AvatarLink" Type="nvarchar" MaxLength="256" />
+          <Property Name="CountRating" Type="int" Nullable="false" />
+          <Property Name="FacebookID" Type="nvarchar" MaxLength="64" />
+          <Property Name="EmailVerificationStatusID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsExternal" Type="bit" Nullable="false" />
+          <Property Name="OutPaymentPoint" Type="uniqueidentifier" />
+          <Property Name="IncPaymentPoint" Type="uniqueidentifier" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="LockoutEndDate" Type="datetimeoffset" Precision="7" />
+          <Property Name="StripeCustomerId" Type="nvarchar" MaxLength="30" />
+          <Property Name="TotalUnreadMessages" Type="int" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="StripeAccountId" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="UserDevice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PushNotificationToken" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="MobileEndpoint" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="SubscriptionEndpoint" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="IsPushNotificationEnabled" Type="bit" Nullable="false" />
+          <Property Name="TopicEndpoint" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zip">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Rank" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_Abuse_ReporterId">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Abuse" Type="Self.Abuse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Abuse">
+              <PropertyRef Name="ReporterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_AbuseRating_AbuseId">
+          <End Role="Abuse" Type="Self.Abuse" Multiplicity="1" />
+          <End Role="AbuseRating" Type="Self.AbuseRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Abuse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AbuseRating">
+              <PropertyRef Name="AbuseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_AbuseRating_RatingId">
+          <End Role="Rating" Type="Self.Rating" Multiplicity="1" />
+          <End Role="AbuseRating" Type="Self.AbuseRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rating">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AbuseRating">
+              <PropertyRef Name="RatingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_AbuseSpace_AbuseId">
+          <End Role="Abuse" Type="Self.Abuse" Multiplicity="1" />
+          <End Role="AbuseSpace" Type="Self.AbuseSpace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Abuse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AbuseSpace">
+              <PropertyRef Name="AbuseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_AbuseSpace_SpaceId">
+          <End Role="Space" Type="Self.Space" Multiplicity="1" />
+          <End Role="AbuseSpace" Type="Self.AbuseSpace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Space">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AbuseSpace">
+              <PropertyRef Name="SpaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_AbuseType_AbuseId">
+          <End Role="Abuse" Type="Self.Abuse" Multiplicity="1" />
+          <End Role="AbuseType" Type="Self.AbuseType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Abuse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AbuseType">
+              <PropertyRef Name="AbuseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_AbuseType_TypeId">
+          <End Role="AbuseTypeDictionary" Type="Self.AbuseTypeDictionary" Multiplicity="1" />
+          <End Role="AbuseType" Type="Self.AbuseType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AbuseTypeDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AbuseType">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Chat_ApprovedMessageOfferHistoryId">
+          <End Role="MessageOfferHistory" Type="Self.MessageOfferHistory" Multiplicity="0..1" />
+          <End Role="Chat" Type="Self.Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageOfferHistory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="ApprovedMessageOfferHistoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Chat_LastMessageOfferId">
+          <End Role="MessageOffer" Type="Self.MessageOffer" Multiplicity="0..1" />
+          <End Role="Chat" Type="Self.Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageOffer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="LastMessageOfferId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Chat_SpaceId">
+          <End Role="Space" Type="Self.Space" Multiplicity="1" />
+          <End Role="Chat" Type="Self.Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Space">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="SpaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Chat_UserId">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Chat" Type="Self.Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ChatMember_ChatId">
+          <End Role="Chat" Type="Self.Chat" Multiplicity="1" />
+          <End Role="ChatMember" Type="Self.ChatMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chat">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChatMember">
+              <PropertyRef Name="ChatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ChatMember_UserId">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="ChatMember" Type="Self.ChatMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChatMember">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Filter_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Filter" Type="Self.Filter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Filter">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Filter_ZipCodeId">
+          <End Role="Zip" Type="Self.Zip" Multiplicity="0..1" />
+          <End Role="Filter" Type="Self.Filter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zip">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Filter">
+              <PropertyRef Name="ZipCodeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FilterRootDictionary_Filter">
+          <End Role="Filter" Type="Self.Filter" Multiplicity="1" />
+          <End Role="FilterRootDictionary" Type="Self.FilterRootDictionary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Filter">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FilterRootDictionary">
+              <PropertyRef Name="FilterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FilterRootDictionary_RootDictionary">
+          <End Role="RootDictionary" Type="Self.RootDictionary" Multiplicity="1" />
+          <End Role="FilterRootDictionary" Type="Self.FilterRootDictionary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RootDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FilterRootDictionary">
+              <PropertyRef Name="RootDictionaryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Invoice_SenderId">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="SenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Invoice_SpaceId">
+          <End Role="Space" Type="Self.Space" Multiplicity="1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Space">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="SpaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Message_ChatId">
+          <End Role="Chat" Type="Self.Chat" Multiplicity="1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chat">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="ChatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Message_DeliveredStatusId">
+          <End Role="MessageDeliveredStatus" Type="Self.MessageDeliveredStatus" Multiplicity="1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageDeliveredStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="DeliveredStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Message_UserId">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MessageOffer_CurretMessageOfferHistory">
+          <End Role="MessageOfferHistory" Type="Self.MessageOfferHistory" Multiplicity="0..1" />
+          <End Role="MessageOffer" Type="Self.MessageOffer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageOfferHistory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessageOffer">
+              <PropertyRef Name="CurretMessageOfferHistory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MessageOffer_pk">
+          <End Role="Message" Type="Self.Message" Multiplicity="1" />
+          <End Role="MessageOffer" Type="Self.MessageOffer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Message">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessageOffer">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MessageOffer_RentPeriodId">
+          <End Role="RentPeriodType" Type="Self.RentPeriodType" Multiplicity="1" />
+          <End Role="MessageOffer" Type="Self.MessageOffer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RentPeriodType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessageOffer">
+              <PropertyRef Name="RentPeriodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MessageOfferHistory_MessageOffer">
+          <End Role="MessageOffer" Type="Self.MessageOffer" Multiplicity="1" />
+          <End Role="MessageOfferHistory" Type="Self.MessageOfferHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageOffer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessageOfferHistory">
+              <PropertyRef Name="MessageOfferId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MessageOfferHistory_MessageOfferStatus">
+          <End Role="MessageOfferStatus" Type="Self.MessageOfferStatus" Multiplicity="1" />
+          <End Role="MessageOfferHistory" Type="Self.MessageOfferHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageOfferStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessageOfferHistory">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MessageOfferHistory_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="MessageOfferHistory" Type="Self.MessageOfferHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessageOfferHistory">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PaymentPoint_PaymentPointTypeId">
+          <End Role="PaymentPointType" Type="Self.PaymentPointType" Multiplicity="1" />
+          <End Role="PaymentPoint" Type="Self.PaymentPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentPointType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PaymentPoint">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PaymentPoint_UserId">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="PaymentPoint" Type="Self.PaymentPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentPoint">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PhotoLibrary_SpaceId">
+          <End Role="Space" Type="Self.Space" Multiplicity="1" />
+          <End Role="PhotoLibrary" Type="Self.PhotoLibrary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Space">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhotoLibrary">
+              <PropertyRef Name="SpaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Rating_pk">
+          <End Role="MessageOfferHistory" Type="Self.MessageOfferHistory" Multiplicity="1" />
+          <End Role="Rating" Type="Self.Rating" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MessageOfferHistory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rating">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Receipt_InvoiceId">
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="1" />
+          <End Role="Receipt" Type="Self.Receipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Receipt">
+              <PropertyRef Name="InvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_RefreshToken_UserId">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="RefreshToken" Type="Self.RefreshToken" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RefreshToken">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SizeType_Id">
+          <End Role="RootDictionary" Type="Self.RootDictionary" Multiplicity="1" />
+          <End Role="SizeType" Type="Self.SizeType" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="RootDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SizeType">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Space_DefaultPhotoID">
+          <End Role="PhotoLibrary" Type="Self.PhotoLibrary" Multiplicity="0..1" />
+          <End Role="Space" Type="Self.Space" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhotoLibrary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Space">
+              <PropertyRef Name="DefaultPhotoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Space_SizeTypeId">
+          <End Role="SizeType" Type="Self.SizeType" Multiplicity="1" />
+          <End Role="Space" Type="Self.Space" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SizeType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Space">
+              <PropertyRef Name="SizeTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Space_SpaceAccessTypeId">
+          <End Role="SpaceAccessType" Type="Self.SpaceAccessType" Multiplicity="1" />
+          <End Role="Space" Type="Self.Space" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpaceAccessType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Space">
+              <PropertyRef Name="SpaceAccessTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Space_SpaceTypeId">
+          <End Role="SpaceType" Type="Self.SpaceType" Multiplicity="1" />
+          <End Role="Space" Type="Self.Space" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpaceType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Space">
+              <PropertyRef Name="SpaceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Space_UserId">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Space" Type="Self.Space" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Space">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Space_ZipId">
+          <End Role="Zip" Type="Self.Zip" Multiplicity="0..1" />
+          <End Role="Space" Type="Self.Space" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zip">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Space">
+              <PropertyRef Name="ZipId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SpaceAccessType_Id">
+          <End Role="RootDictionary" Type="Self.RootDictionary" Multiplicity="1" />
+          <End Role="SpaceAccessType" Type="Self.SpaceAccessType" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="RootDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SpaceAccessType">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SpaceBusy_NextSpaceBusyID">
+          <End Role="SpaceBusy" Type="Self.SpaceBusy" Multiplicity="0..1" />
+          <End Role="SpaceBusy1" Type="Self.SpaceBusy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpaceBusy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SpaceBusy1">
+              <PropertyRef Name="NextSpaceBusyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SpaceBusy_SpaceId">
+          <End Role="Space" Type="Self.Space" Multiplicity="1" />
+          <End Role="SpaceBusy" Type="Self.SpaceBusy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Space">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SpaceBusy">
+              <PropertyRef Name="SpaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SpaceType_Id">
+          <End Role="RootDictionary" Type="Self.RootDictionary" Multiplicity="1" />
+          <End Role="SpaceType" Type="Self.SpaceType" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="RootDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SpaceType">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_TrainingSet_ZipId">
+          <End Role="Zip" Type="Self.Zip" Multiplicity="1" />
+          <End Role="TrainingSet" Type="Self.TrainingSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zip">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrainingSet">
+              <PropertyRef Name="ZipId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_User_EmailVerificationStatusID">
+          <End Role="EmailVerificationStatus" Type="Self.EmailVerificationStatus" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailVerificationStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="EmailVerificationStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_User_IncPaymentPoint">
+          <End Role="PaymentPoint" Type="Self.PaymentPoint" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentPoint">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IncPaymentPoint" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_User_OutPaymentPoint">
+          <End Role="PaymentPoint" Type="Self.PaymentPoint" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentPoint">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="OutPaymentPoint" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_User_PhoneVerificationStatusID">
+          <End Role="PhoneVerificationStatus" Type="Self.PhoneVerificationStatus" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhoneVerificationStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="PhoneVerificationStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserDevice_UserId">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserDevice" Type="Self.UserDevice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserDevice">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fnSpaceForecastRate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="money">
+          <Parameter Name="SizeTypeId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ZipId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="fnSpaceForecastRateTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SizeTypeId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ZipId" Type="uniqueidentifier" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="MedianDisc" Type="money" Nullable="false" />
+                <Property Name="cntRate" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="spSpaceGetForecastRate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SizeTypeId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ZipCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="ForecastedRate" Type="money" Mode="InOut" />
+        </Function>
+        <Function Name="fnMessageDeliveredStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="ns">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="WasRead" Type="uniqueidentifier" />
+                <Property Name="WasSent" Type="uniqueidentifier" />
+                <Property Name="WasNotSent" Type="uniqueidentifier" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="spUserDel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="tst">
+          <Parameter Name="userList" Type="xml" Mode="In" />
+        </Function>
+        <EntityContainer Name="storgageModelStoreContainer">
+          <EntitySet Name="Abuse" EntityType="Self.Abuse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AbuseRating" EntityType="Self.AbuseRating" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AbuseSpace" EntityType="Self.AbuseSpace" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AbuseType" EntityType="Self.AbuseType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AbuseTypeDictionary" EntityType="Self.AbuseTypeDictionary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Chat" EntityType="Self.Chat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChatMember" EntityType="Self.ChatMember" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailVerificationStatus" EntityType="Self.EmailVerificationStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Filter" EntityType="Self.Filter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FilterRootDictionary" EntityType="Self.FilterRootDictionary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MessageDeliveredStatus" EntityType="Self.MessageDeliveredStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MessageOffer" EntityType="Self.MessageOffer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MessageOfferHistory" EntityType="Self.MessageOfferHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MessageOfferStatus" EntityType="Self.MessageOfferStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentPoint" EntityType="Self.PaymentPoint" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentPointType" EntityType="Self.PaymentPointType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhoneVerificationStatus" EntityType="Self.PhoneVerificationStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhotoLibrary" EntityType="Self.PhotoLibrary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rating" EntityType="Self.Rating" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Receipt" EntityType="Self.Receipt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RefreshToken" EntityType="Self.RefreshToken" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RentPeriodType" EntityType="Self.RentPeriodType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RootDictionary" EntityType="Self.RootDictionary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SizeType" EntityType="Self.SizeType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Space" EntityType="Self.Space" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpaceAccessType" EntityType="Self.SpaceAccessType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpaceBusy" EntityType="Self.SpaceBusy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpaceType" EntityType="Self.SpaceType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrainingSet" EntityType="Self.TrainingSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserDevice" EntityType="Self.UserDevice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zip" EntityType="Self.Zip" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_Abuse_ReporterId" Association="Self.fk_Abuse_ReporterId">
+            <End Role="User" EntitySet="User" />
+            <End Role="Abuse" EntitySet="Abuse" />
+          </AssociationSet>
+          <AssociationSet Name="fk_AbuseRating_AbuseId" Association="Self.fk_AbuseRating_AbuseId">
+            <End Role="Abuse" EntitySet="Abuse" />
+            <End Role="AbuseRating" EntitySet="AbuseRating" />
+          </AssociationSet>
+          <AssociationSet Name="fk_AbuseRating_RatingId" Association="Self.fk_AbuseRating_RatingId">
+            <End Role="Rating" EntitySet="Rating" />
+            <End Role="AbuseRating" EntitySet="AbuseRating" />
+          </AssociationSet>
+          <AssociationSet Name="fk_AbuseSpace_AbuseId" Association="Self.fk_AbuseSpace_AbuseId">
+            <End Role="Abuse" EntitySet="Abuse" />
+            <End Role="AbuseSpace" EntitySet="AbuseSpace" />
+          </AssociationSet>
+          <AssociationSet Name="fk_AbuseSpace_SpaceId" Association="Self.fk_AbuseSpace_SpaceId">
+            <End Role="Space" EntitySet="Space" />
+            <End Role="AbuseSpace" EntitySet="AbuseSpace" />
+          </AssociationSet>
+          <AssociationSet Name="fk_AbuseType_AbuseId" Association="Self.fk_AbuseType_AbuseId">
+            <End Role="Abuse" EntitySet="Abuse" />
+            <End Role="AbuseType" EntitySet="AbuseType" />
+          </AssociationSet>
+          <AssociationSet Name="fk_AbuseType_TypeId" Association="Self.fk_AbuseType_TypeId">
+            <End Role="AbuseTypeDictionary" EntitySet="AbuseTypeDictionary" />
+            <End Role="AbuseType" EntitySet="AbuseType" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Chat_ApprovedMessageOfferHistoryId" Association="Self.fk_Chat_ApprovedMessageOfferHistoryId">
+            <End Role="MessageOfferHistory" EntitySet="MessageOfferHistory" />
+            <End Role="Chat" EntitySet="Chat" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Chat_LastMessageOfferId" Association="Self.fk_Chat_LastMessageOfferId">
+            <End Role="MessageOffer" EntitySet="MessageOffer" />
+            <End Role="Chat" EntitySet="Chat" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Chat_SpaceId" Association="Self.fk_Chat_SpaceId">
+            <End Role="Space" EntitySet="Space" />
+            <End Role="Chat" EntitySet="Chat" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Chat_UserId" Association="Self.fk_Chat_UserId">
+            <End Role="User" EntitySet="User" />
+            <End Role="Chat" EntitySet="Chat" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ChatMember_ChatId" Association="Self.fk_ChatMember_ChatId">
+            <End Role="Chat" EntitySet="Chat" />
+            <End Role="ChatMember" EntitySet="ChatMember" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ChatMember_UserId" Association="Self.fk_ChatMember_UserId">
+            <End Role="User" EntitySet="User" />
+            <End Role="ChatMember" EntitySet="ChatMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Filter_User" Association="Self.FK_Filter_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Filter" EntitySet="Filter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Filter_ZipCodeId" Association="Self.FK_Filter_ZipCodeId">
+            <End Role="Zip" EntitySet="Zip" />
+            <End Role="Filter" EntitySet="Filter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FilterRootDictionary_Filter" Association="Self.FK_FilterRootDictionary_Filter">
+            <End Role="Filter" EntitySet="Filter" />
+            <End Role="FilterRootDictionary" EntitySet="FilterRootDictionary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FilterRootDictionary_RootDictionary" Association="Self.FK_FilterRootDictionary_RootDictionary">
+            <End Role="RootDictionary" EntitySet="RootDictionary" />
+            <End Role="FilterRootDictionary" EntitySet="FilterRootDictionary" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Invoice_SenderId" Association="Self.fk_Invoice_SenderId">
+            <End Role="User" EntitySet="User" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Invoice_SpaceId" Association="Self.fk_Invoice_SpaceId">
+            <End Role="Space" EntitySet="Space" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Message_ChatId" Association="Self.fk_Message_ChatId">
+            <End Role="Chat" EntitySet="Chat" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Message_DeliveredStatusId" Association="Self.fk_Message_DeliveredStatusId">
+            <End Role="MessageDeliveredStatus" EntitySet="MessageDeliveredStatus" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Message_UserId" Association="Self.fk_Message_UserId">
+            <End Role="User" EntitySet="User" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MessageOffer_CurretMessageOfferHistory" Association="Self.fk_MessageOffer_CurretMessageOfferHistory">
+            <End Role="MessageOfferHistory" EntitySet="MessageOfferHistory" />
+            <End Role="MessageOffer" EntitySet="MessageOffer" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MessageOffer_pk" Association="Self.fk_MessageOffer_pk">
+            <End Role="Message" EntitySet="Message" />
+            <End Role="MessageOffer" EntitySet="MessageOffer" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MessageOffer_RentPeriodId" Association="Self.fk_MessageOffer_RentPeriodId">
+            <End Role="RentPeriodType" EntitySet="RentPeriodType" />
+            <End Role="MessageOffer" EntitySet="MessageOffer" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MessageOfferHistory_MessageOffer" Association="Self.fk_MessageOfferHistory_MessageOffer">
+            <End Role="MessageOffer" EntitySet="MessageOffer" />
+            <End Role="MessageOfferHistory" EntitySet="MessageOfferHistory" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MessageOfferHistory_MessageOfferStatus" Association="Self.fk_MessageOfferHistory_MessageOfferStatus">
+            <End Role="MessageOfferStatus" EntitySet="MessageOfferStatus" />
+            <End Role="MessageOfferHistory" EntitySet="MessageOfferHistory" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MessageOfferHistory_User" Association="Self.fk_MessageOfferHistory_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="MessageOfferHistory" EntitySet="MessageOfferHistory" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PaymentPoint_PaymentPointTypeId" Association="Self.fk_PaymentPoint_PaymentPointTypeId">
+            <End Role="PaymentPointType" EntitySet="PaymentPointType" />
+            <End Role="PaymentPoint" EntitySet="PaymentPoint" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PaymentPoint_UserId" Association="Self.fk_PaymentPoint_UserId">
+            <End Role="User" EntitySet="User" />
+            <End Role="PaymentPoint" EntitySet="PaymentPoint" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PhotoLibrary_SpaceId" Association="Self.fk_PhotoLibrary_SpaceId">
+            <End Role="Space" EntitySet="Space" />
+            <End Role="PhotoLibrary" EntitySet="PhotoLibrary" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Rating_pk" Association="Self.fk_Rating_pk">
+            <End Role="MessageOfferHistory" EntitySet="MessageOfferHistory" />
+            <End Role="Rating" EntitySet="Rating" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Receipt_InvoiceId" Association="Self.fk_Receipt_InvoiceId">
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="Receipt" EntitySet="Receipt" />
+          </AssociationSet>
+          <AssociationSet Name="fk_RefreshToken_UserId" Association="Self.fk_RefreshToken_UserId">
+            <End Role="User" EntitySet="User" />
+            <End Role="RefreshToken" EntitySet="RefreshToken" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SizeType_Id" Association="Self.fk_SizeType_Id">
+            <End Role="RootDictionary" EntitySet="RootDictionary" />
+            <End Role="SizeType" EntitySet="SizeType" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Space_DefaultPhotoID" Association="Self.fk_Space_DefaultPhotoID">
+            <End Role="PhotoLibrary" EntitySet="PhotoLibrary" />
+            <End Role="Space" EntitySet="Space" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Space_SizeTypeId" Association="Self.fk_Space_SizeTypeId">
+            <End Role="SizeType" EntitySet="SizeType" />
+            <End Role="Space" EntitySet="Space" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Space_SpaceAccessTypeId" Association="Self.fk_Space_SpaceAccessTypeId">
+            <End Role="SpaceAccessType" EntitySet="SpaceAccessType" />
+            <End Role="Space" EntitySet="Space" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Space_SpaceTypeId" Association="Self.fk_Space_SpaceTypeId">
+            <End Role="SpaceType" EntitySet="SpaceType" />
+            <End Role="Space" EntitySet="Space" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Space_UserId" Association="Self.fk_Space_UserId">
+            <End Role="User" EntitySet="User" />
+            <End Role="Space" EntitySet="Space" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Space_ZipId" Association="Self.fk_Space_ZipId">
+            <End Role="Zip" EntitySet="Zip" />
+            <End Role="Space" EntitySet="Space" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SpaceAccessType_Id" Association="Self.fk_SpaceAccessType_Id">
+            <End Role="RootDictionary" EntitySet="RootDictionary" />
+            <End Role="SpaceAccessType" EntitySet="SpaceAccessType" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SpaceBusy_NextSpaceBusyID" Association="Self.fk_SpaceBusy_NextSpaceBusyID">
+            <End Role="SpaceBusy" EntitySet="SpaceBusy" />
+            <End Role="SpaceBusy1" EntitySet="SpaceBusy" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SpaceBusy_SpaceId" Association="Self.fk_SpaceBusy_SpaceId">
+            <End Role="Space" EntitySet="Space" />
+            <End Role="SpaceBusy" EntitySet="SpaceBusy" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SpaceType_Id" Association="Self.fk_SpaceType_Id">
+            <End Role="RootDictionary" EntitySet="RootDictionary" />
+            <End Role="SpaceType" EntitySet="SpaceType" />
+          </AssociationSet>
+          <AssociationSet Name="fk_TrainingSet_ZipId" Association="Self.fk_TrainingSet_ZipId">
+            <End Role="Zip" EntitySet="Zip" />
+            <End Role="TrainingSet" EntitySet="TrainingSet" />
+          </AssociationSet>
+          <AssociationSet Name="fk_User_EmailVerificationStatusID" Association="Self.fk_User_EmailVerificationStatusID">
+            <End Role="EmailVerificationStatus" EntitySet="EmailVerificationStatus" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="fk_User_IncPaymentPoint" Association="Self.fk_User_IncPaymentPoint">
+            <End Role="PaymentPoint" EntitySet="PaymentPoint" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="fk_User_OutPaymentPoint" Association="Self.fk_User_OutPaymentPoint">
+            <End Role="PaymentPoint" EntitySet="PaymentPoint" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="fk_User_PhoneVerificationStatusID" Association="Self.fk_User_PhoneVerificationStatusID">
+            <End Role="PhoneVerificationStatus" EntitySet="PhoneVerificationStatus" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserDevice_UserId" Association="Self.fk_UserDevice_UserId">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserDevice" EntitySet="UserDevice" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="storgageModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="FilterRootDictionary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FilterId" Type="Guid" Nullable="false" />
+          <Property Name="RootDictionaryId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="RootDictionary" Relationship="storgageModel.FK_FilterRootDictionary_RootDictionary" FromRole="FilterRootDictionary" ToRole="RootDictionary" />
+          <NavigationProperty Name="Filter" Relationship="storgageModel.FK_FilterRootDictionary_Filter" FromRole="FilterRootDictionary" ToRole="Filter" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="ProcessedDate" Type="DateTimeOffset" Precision="7" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="SpaceId" Type="Guid" Nullable="false" />
+          <Property Name="SenderId" Type="Guid" Nullable="false" />
+          <Property Name="RecepientToken" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SenderToken" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Self.fk_Invoice_SenderId" FromRole="Invoice" ToRole="User" />
+          <NavigationProperty Name="Space" Relationship="Self.fk_Invoice_SpaceId" FromRole="Invoice" ToRole="Space" />
+          <NavigationProperty Name="Receipts" Relationship="Self.fk_Receipt_InvoiceId" FromRole="Invoice" ToRole="Receipt" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReceivedDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="SentDate" Type="DateTimeOffset" Nullable="false" Precision="7" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="MessageText" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.fk_Message_SenderId" FromRole="Message" ToRole="User" />
+          <Property Name="ChatId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Chat" Relationship="storgageModel.fk_Message_ChatId1" FromRole="Message" ToRole="Chat" />
+          <Property Name="DeliveredStatusId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="MessageDeliveredStatu" Relationship="storgageModel.fk_Message_DeliveredStatusId" FromRole="Message" ToRole="MessageDeliveredStatu" />
+          <NavigationProperty Name="MessageOffer" Relationship="storgageModel.fk_MessageOffer_pk" FromRole="Message" ToRole="MessageOffer" />
+        </EntityType>
+        <EntityType Name="PhoneVerificationStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="storgageModel.fk_User_PhoneVerificationStatusID" FromRole="PhoneVerificationStatu" ToRole="User" />
+          <Property Name="Synonym" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PhotoLibrary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Link" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SpaceId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Space" Relationship="Self.fk_PhotoLibrary_SpaceId" FromRole="PhotoLibrary" ToRole="Space" />
+          <NavigationProperty Name="Spaces" Relationship="storgageModel.fk_Space_DefaultPhotoID1" FromRole="PhotoLibrary" ToRole="Space" />
+        </EntityType>
+        <EntityType Name="Rating">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Rank" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SpaceOwnerReply" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MessageOfferHistory" Relationship="storgageModel.fk_Rating_pk" FromRole="Rating" ToRole="MessageOfferHistory" />
+          <Property Name="RepliedAt" Type="DateTimeOffset" Precision="7" />
+          <NavigationProperty Name="AbuseRatings" Relationship="storgageModel.fk_AbuseRating_RatingId" FromRole="Rating" ToRole="AbuseRating" />
+        </EntityType>
+        <EntityType Name="Receipt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="InvoiceId" Type="Guid" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="SentDate" Type="DateTimeOffset" Precision="7" />
+          <Property Name="StripeTransactionId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Invoice" Relationship="Self.fk_Receipt_InvoiceId" FromRole="Receipt" ToRole="Invoice" />
+        </EntityType>
+        <EntityType Name="SizeType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Spaces" Relationship="Self.fk_Space_SizeTypeId" FromRole="SizeType" ToRole="Space" />
+          <Property Name="Synonym" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RootDictionary" Relationship="storgageModel.fk_SizeType_Id" FromRole="SizeType" ToRole="RootDictionary" />
+        </EntityType>
+        <EntityType Name="Space">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="SizeTypeId" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Decription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsListed" Type="Boolean" Nullable="false" />
+          <Property Name="SpaceTypeId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Invoices" Relationship="Self.fk_Invoice_SpaceId" FromRole="Space" ToRole="Invoice" />
+          <NavigationProperty Name="PhotoLibraries" Relationship="Self.fk_PhotoLibrary_SpaceId" FromRole="Space" ToRole="PhotoLibrary" />
+          <NavigationProperty Name="SizeType" Relationship="Self.fk_Space_SizeTypeId" FromRole="Space" ToRole="SizeType" />
+          <NavigationProperty Name="SpaceType" Relationship="Self.fk_Space_SpaceTypeId" FromRole="Space" ToRole="SpaceType" />
+          <NavigationProperty Name="User" Relationship="Self.fk_Space_UserId" FromRole="Space" ToRole="User" />
+          <NavigationProperty Name="SpaceBusies" Relationship="Self.fk_SpaceBusy_SpaceId" FromRole="Space" ToRole="SpaceBusy" />
+          <Property Name="SpaceAccessTypeId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="SpaceAccessType" Relationship="storgageModel.fk_Space_SpaceAccessTypeId" FromRole="Space" ToRole="SpaceAccessType" />
+          <Property Name="Location" Type="Geography" Nullable="false" />
+          <Property Name="DefaultPhotoID" Type="Guid" />
+          <NavigationProperty Name="PhotoLibrary" Relationship="storgageModel.fk_Space_DefaultPhotoID1" FromRole="Space" ToRole="PhotoLibrary" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="createdDate" Type="DateTimeOffset" Nullable="false" Precision="7" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Rate" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="Chats" Relationship="storgageModel.fk_Chat_SpaceId" FromRole="Space" ToRole="Chat" />
+          <Property Name="FullAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ShortAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ZipId" Type="Guid" Nullable="true" />
+          <NavigationProperty Name="Zip" Relationship="storgageModel.fk_Space_ZipId" FromRole="Space" ToRole="Zip" />
+          <Property Name="AvailableSince" Type="DateTimeOffset" Precision="7" />
+          <NavigationProperty Name="AbuseSpaces" Relationship="storgageModel.fk_AbuseSpace_SpaceId" FromRole="Space" ToRole="AbuseSpace" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Latitude" Type="Double" Nullable="false" />
+          <Property Name="Longitude" Type="Double" Nullable="false" />
+          <Property Name="IsOccupied" Type="Boolean" annotation:StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SpaceBusy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="SpaceId" Type="Guid" Nullable="false" />
+          <Property Name="NextSpaceBusyID" Type="Guid" />
+          <NavigationProperty Name="Space" Relationship="Self.fk_SpaceBusy_SpaceId" FromRole="SpaceBusy" ToRole="Space" />
+          <NavigationProperty Name="PrevSpaceBusy" Relationship="Self.fk_SpaceBusy_NextSpaceBusyID" FromRole="SpaceBusy" ToRole="SpaceBusy1" />
+          <NavigationProperty Name="NextSpaceBusy" Relationship="Self.fk_SpaceBusy_NextSpaceBusyID" FromRole="SpaceBusy1" ToRole="SpaceBusy" />
+          <Property Name="StartDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="EndDate" Type="DateTimeOffset" Precision="7" />
+        </EntityType>
+        <EntityType Name="SpaceType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Spaces" Relationship="Self.fk_Space_SpaceTypeId" FromRole="SpaceType" ToRole="Space" />
+          <Property Name="Synonym" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RootDictionary" Relationship="storgageModel.fk_SpaceType_Id" FromRole="SpaceType" ToRole="RootDictionary" />
+        </EntityType>
+        <EntityType Name="TrainingSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Size" Type="Int32" Nullable="false" />
+          <Property Name="ZipId" Type="Guid" Nullable="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="Accessebility" Type="Int32" Nullable="false" />
+          <Property Name="Rate" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Zip" Relationship="Self.fk_TrainingSet_ZipId" FromRole="TrainingSet" ToRole="Zip" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Lastname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Firstname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PaymentSystemSecret" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AvgRate" Type="Decimal" Precision="4" Scale="2" />
+          <NavigationProperty Name="Invoices" Relationship="Self.fk_Invoice_SenderId" FromRole="User" ToRole="Invoice" />
+          <NavigationProperty Name="Messages" Relationship="Self.fk_Message_SenderId" FromRole="User" ToRole="Message" />
+          <NavigationProperty Name="Spaces" Relationship="Self.fk_Space_UserId" FromRole="User" ToRole="Space" />
+          <NavigationProperty Name="UserDevices" Relationship="Self.fk_UserDevice_UserId" FromRole="User" ToRole="UserDevice" />
+          <Property Name="PhoneVerificationStatusID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="PhoneVerificationStatus" Relationship="storgageModel.fk_User_PhoneVerificationStatusID" FromRole="User" ToRole="PhoneVerificationStatu" />
+          <Property Name="AvatarLink" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Chats" Relationship="storgageModel.fk_Chat_UserId" FromRole="User" ToRole="Chat" />
+          <NavigationProperty Name="ChatMembers" Relationship="storgageModel.fk_ChatMember_UserId" FromRole="User" ToRole="ChatMember" />
+          <Property Name="Password" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="CountRating" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MessageOfferHistories" Relationship="storgageModel.fk_MessageOfferHistory_User" FromRole="User" ToRole="MessageOfferHistory" />
+          <Property Name="FacebookID" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="EmailVerificationStatusID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="EmailVerificationStatus" Relationship="storgageModel.fk_User_EmailVerificationStatusID" FromRole="User" ToRole="EmailVerificationStatu" />
+          <NavigationProperty Name="RefreshTokens" Relationship="storgageModel.fk_RefreshToken_UserId" FromRole="User" ToRole="RefreshToken" />
+          <Property Name="IsExternal" Type="Boolean" Nullable="false" />
+          <Property Name="OutPaymentPointId" Type="Guid" />
+          <Property Name="IncPaymentPointId" Type="Guid" />
+          <NavigationProperty Name="PaymentPoints" Relationship="storgageModel.fk_PaymentPoint_UserId" FromRole="User" ToRole="PaymentPoint" />
+          <NavigationProperty Name="IncPaymentPoint" Relationship="storgageModel.fk_User_IncPaymentPoint" FromRole="User" ToRole="PaymentPoint" />
+          <NavigationProperty Name="OutPaymentPoint" Relationship="storgageModel.fk_User_OutPaymentPoint" FromRole="User" ToRole="PaymentPoint" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="LockoutEndDate" Type="DateTimeOffset" Precision="7" />
+          <NavigationProperty Name="Abuses" Relationship="storgageModel.fk_Abuse_ReporterId" FromRole="User" ToRole="Abuse" />
+          <NavigationProperty Name="Filters" Relationship="storgageModel.FK_Filter_User" FromRole="User" ToRole="Filter" />
+          <Property Name="StripeCustomerId" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="TotalUnreadMessages" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="StripeAccountId" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserDevice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="PushNotificationToken" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.fk_UserDevice_UserId" FromRole="UserDevice" ToRole="User" />
+          <Property Name="MobileEndpoint" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="SubscriptionEndpoint" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="TopicEndpoint" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="IsPushNotificationEnabled" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zip">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ZipCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rank" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TrainingSets" Relationship="Self.fk_TrainingSet_ZipId" FromRole="Zip" ToRole="TrainingSet" />
+          <NavigationProperty Name="Spaces" Relationship="storgageModel.fk_Space_ZipId" FromRole="Zip" ToRole="Space" />
+          <NavigationProperty Name="Filters" Relationship="storgageModel.FK_Filter_ZipCodeId" FromRole="Zip" ToRole="Filter" />
+          </EntityType>
+        <Association Name="fk_Invoice_SenderId">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="SenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Invoice_SpaceId">
+          <End Role="Space" Type="Self.Space" Multiplicity="1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Space">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="SpaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Receipt_InvoiceId">
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="1" />
+          <End Role="Receipt" Type="Self.Receipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Receipt">
+              <PropertyRef Name="InvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Message_SenderId">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PhotoLibrary_SpaceId">
+          <End Role="Space" Type="Self.Space" Multiplicity="1" />
+          <End Role="PhotoLibrary" Type="Self.PhotoLibrary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Space">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhotoLibrary">
+              <PropertyRef Name="SpaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Space_SizeTypeId">
+          <End Role="SizeType" Type="Self.SizeType" Multiplicity="1" />
+          <End Role="Space" Type="Self.Space" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SizeType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Space">
+              <PropertyRef Name="SizeTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Space_SpaceTypeId">
+          <End Role="SpaceType" Type="Self.SpaceType" Multiplicity="1" />
+          <End Role="Space" Type="Self.Space" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpaceType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Space">
+              <PropertyRef Name="SpaceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Space_UserId">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Space" Type="Self.Space" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Space">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SpaceBusy_SpaceId">
+          <End Role="Space" Type="Self.Space" Multiplicity="1" />
+          <End Role="SpaceBusy" Type="Self.SpaceBusy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Space">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SpaceBusy">
+              <PropertyRef Name="SpaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SpaceBusy_NextSpaceBusyID">
+          <End Role="SpaceBusy" Type="Self.SpaceBusy" Multiplicity="0..1" />
+          <End Role="SpaceBusy1" Type="Self.SpaceBusy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpaceBusy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SpaceBusy1">
+              <PropertyRef Name="NextSpaceBusyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_TrainingSet_ZipId">
+          <End Role="Zip" Type="Self.Zip" Multiplicity="1" />
+          <End Role="TrainingSet" Type="Self.TrainingSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zip">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrainingSet">
+              <PropertyRef Name="ZipId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserDevice_UserId">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserDevice" Type="Self.UserDevice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserDevice">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="storgageEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FilterRootDictionaries" EntityType="Self.FilterRootDictionary" />
+          <EntitySet Name="Invoices" EntityType="Self.Invoice" />
+          <EntitySet Name="Messages" EntityType="Self.Message" />
+          <EntitySet Name="PhoneVerificationStatus" EntityType="storgageModel.PhoneVerificationStatus" />
+          <EntitySet Name="PhotoLibraries" EntityType="Self.PhotoLibrary" />
+          <EntitySet Name="Ratings" EntityType="Self.Rating" />
+          <EntitySet Name="Receipts" EntityType="Self.Receipt" />
+          <EntitySet Name="SizeTypes" EntityType="Self.SizeType" />
+          <EntitySet Name="Spaces" EntityType="Self.Space" />
+          <EntitySet Name="SpaceBusies" EntityType="Self.SpaceBusy" />
+          <EntitySet Name="SpaceTypes" EntityType="Self.SpaceType" />
+          <EntitySet Name="TrainingSets" EntityType="Self.TrainingSet" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserDevices" EntityType="Self.UserDevice" />
+          <EntitySet Name="Zips" EntityType="Self.Zip" />
+          <AssociationSet Name="fk_Invoice_SenderId" Association="Self.fk_Invoice_SenderId">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Invoice_SpaceId" Association="Self.fk_Invoice_SpaceId">
+            <End Role="Space" EntitySet="Spaces" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Receipt_InvoiceId" Association="Self.fk_Receipt_InvoiceId">
+            <End Role="Invoice" EntitySet="Invoices" />
+            <End Role="Receipt" EntitySet="Receipts" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Message_SenderId" Association="Self.fk_Message_SenderId">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Message" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PhotoLibrary_SpaceId" Association="Self.fk_PhotoLibrary_SpaceId">
+            <End Role="Space" EntitySet="Spaces" />
+            <End Role="PhotoLibrary" EntitySet="PhotoLibraries" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Space_SizeTypeId" Association="Self.fk_Space_SizeTypeId">
+            <End Role="SizeType" EntitySet="SizeTypes" />
+            <End Role="Space" EntitySet="Spaces" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Space_SpaceTypeId" Association="Self.fk_Space_SpaceTypeId">
+            <End Role="SpaceType" EntitySet="SpaceTypes" />
+            <End Role="Space" EntitySet="Spaces" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Space_UserId" Association="Self.fk_Space_UserId">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Space" EntitySet="Spaces" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SpaceBusy_SpaceId" Association="Self.fk_SpaceBusy_SpaceId">
+            <End Role="Space" EntitySet="Spaces" />
+            <End Role="SpaceBusy" EntitySet="SpaceBusies" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SpaceBusy_NextSpaceBusyID" Association="Self.fk_SpaceBusy_NextSpaceBusyID">
+            <End Role="SpaceBusy" EntitySet="SpaceBusies" />
+            <End Role="SpaceBusy1" EntitySet="SpaceBusies" />
+          </AssociationSet>
+          <AssociationSet Name="fk_TrainingSet_ZipId" Association="Self.fk_TrainingSet_ZipId">
+            <End Role="Zip" EntitySet="Zips" />
+            <End Role="TrainingSet" EntitySet="TrainingSets" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserDevice_UserId" Association="Self.fk_UserDevice_UserId">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserDevice" EntitySet="UserDevices" />
+          </AssociationSet>
+          <EntitySet Name="SpaceAccessTypes" EntityType="storgageModel.SpaceAccessType" />
+          <AssociationSet Name="fk_User_PhoneVerificationStatusID" Association="storgageModel.fk_User_PhoneVerificationStatusID">
+            <End Role="PhoneVerificationStatu" EntitySet="PhoneVerificationStatus" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Space_SpaceAccessTypeId" Association="storgageModel.fk_Space_SpaceAccessTypeId">
+            <End Role="SpaceAccessType" EntitySet="SpaceAccessTypes" />
+            <End Role="Space" EntitySet="Spaces" />
+          </AssociationSet>
+          <EntitySet Name="Chats" EntityType="storgageModel.Chat" />
+          <AssociationSet Name="fk_Chat_UserId" Association="storgageModel.fk_Chat_UserId">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Chat" EntitySet="Chats" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Message_ChatId1" Association="storgageModel.fk_Message_ChatId1">
+            <End Role="Chat" EntitySet="Chats" />
+            <End Role="Message" EntitySet="Messages" />
+          </AssociationSet>
+          <EntitySet Name="ChatMembers" EntityType="storgageModel.ChatMember" />
+          <EntitySet Name="MessageDeliveredStatus2" EntityType="storgageModel.MessageDeliveredStatus" />
+          <AssociationSet Name="fk_ChatMember_ChatId" Association="storgageModel.fk_ChatMember_ChatId">
+            <End Role="Chat" EntitySet="Chats" />
+            <End Role="ChatMember" EntitySet="ChatMembers" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ChatMember_UserId" Association="storgageModel.fk_ChatMember_UserId">
+            <End Role="User" EntitySet="Users" />
+            <End Role="ChatMember" EntitySet="ChatMembers" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Message_DeliveredStatusId" Association="storgageModel.fk_Message_DeliveredStatusId">
+            <End Role="MessageDeliveredStatu" EntitySet="MessageDeliveredStatus2" />
+            <End Role="Message" EntitySet="Messages" />
+          </AssociationSet>
+          <FunctionImport Name="fnMessageDeliveredStatus" IsComposable="true" ReturnType="Collection(storgageModel.fnMessageDeliveredStatus_Result)" />
+          <EntitySet Name="MessageOffers" EntityType="storgageModel.MessageOffer" />
+          <EntitySet Name="MessageOfferStatus" EntityType="storgageModel.MessageOfferStatus" />
+          <AssociationSet Name="fk_MessageOffer_pk" Association="storgageModel.fk_MessageOffer_pk">
+            <End Role="Message" EntitySet="Messages" />
+            <End Role="MessageOffer" EntitySet="MessageOffers" />
+          </AssociationSet>
+          <EntitySet Name="RentPeriodTypes" EntityType="storgageModel.RentPeriodType" />
+          <AssociationSet Name="fk_Space_DefaultPhotoID1" Association="storgageModel.fk_Space_DefaultPhotoID1">
+            <End Role="PhotoLibrary" EntitySet="PhotoLibraries" />
+            <End Role="Space" EntitySet="Spaces" />
+          </AssociationSet>
+          <AssociationSet Name="Rent_Period_FK" Association="storgageModel.Rent_Period_FK">
+            <End Role="RentPeriodType" EntitySet="RentPeriodTypes" />
+            <End Role="MessageOffer" EntitySet="MessageOffers" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Chat_SpaceId" Association="storgageModel.fk_Chat_SpaceId">
+            <End Role="Space" EntitySet="Spaces" />
+            <End Role="Chat" EntitySet="Chats" />
+          </AssociationSet>
+          <EntitySet Name="MessageOfferHistories" EntityType="storgageModel.MessageOfferHistory" />
+          <AssociationSet Name="fk_MessageOfferHistory_MessageOffer" Association="storgageModel.fk_MessageOfferHistory_MessageOffer">
+            <End Role="MessageOffer" EntitySet="MessageOffers" />
+            <End Role="MessageOfferHistory" EntitySet="MessageOfferHistories" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MessageOfferHistory_MessageOfferStatus" Association="storgageModel.fk_MessageOfferHistory_MessageOfferStatus">
+            <End Role="MessageOfferStatus" EntitySet="MessageOfferStatus" />
+            <End Role="MessageOfferHistory" EntitySet="MessageOfferHistories" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MessageOfferHistory_User" Association="storgageModel.fk_MessageOfferHistory_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="MessageOfferHistory" EntitySet="MessageOfferHistories" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Space_ZipId" Association="storgageModel.fk_Space_ZipId">
+            <End Role="Zip" EntitySet="Zips" />
+            <End Role="Space" EntitySet="Spaces" />
+          </AssociationSet>
+          <EntitySet Name="EmailVerificationStatus" EntityType="storgageModel.EmailVerificationStatus" />
+          <AssociationSet Name="fk_User_EmailVerificationStatusID" Association="storgageModel.fk_User_EmailVerificationStatusID">
+            <End Role="EmailVerificationStatu" EntitySet="EmailVerificationStatus" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MessageOffer_CurretMessageOfferHistory" Association="storgageModel.fk_MessageOffer_CurretMessageOfferHistory">
+            <End Role="MessageOfferHistory" EntitySet="MessageOfferHistories" />
+            <End Role="MessageOffer" EntitySet="MessageOffers" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Rating_pk" Association="storgageModel.fk_Rating_pk">
+            <End Role="MessageOfferHistory" EntitySet="MessageOfferHistories" />
+            <End Role="Rating" EntitySet="Ratings" />
+          </AssociationSet>
+          <FunctionImport Name="spUserDel">
+          <Parameter Name="userList" Mode="In" Type="String" />
+          </FunctionImport>
+          <AssociationSet Name="fk_Chat_ApprovedMessageOfferHistoryId" Association="storgageModel.fk_Chat_ApprovedMessageOfferHistoryId">
+            <End Role="MessageOfferHistory" EntitySet="MessageOfferHistories" />
+            <End Role="Chat" EntitySet="Chats" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Chat_LastMessageOfferId" Association="storgageModel.fk_Chat_LastMessageOfferId">
+            <End Role="MessageOffer" EntitySet="MessageOffers" />
+            <End Role="Chat" EntitySet="Chats" />
+          </AssociationSet>
+          <EntitySet Name="RefreshTokens" EntityType="storgageModel.RefreshToken" />
+          <AssociationSet Name="fk_RefreshToken_UserId" Association="storgageModel.fk_RefreshToken_UserId">
+            <End Role="User" EntitySet="Users" />
+            <End Role="RefreshToken" EntitySet="RefreshTokens" />
+          </AssociationSet>
+          <EntitySet Name="PaymentPoints" EntityType="storgageModel.PaymentPoint" />
+          <EntitySet Name="PaymentPointTypes" EntityType="storgageModel.PaymentPointType" />
+          <AssociationSet Name="fk_PaymentPoint_PaymentPointTypeId" Association="storgageModel.fk_PaymentPoint_PaymentPointTypeId">
+            <End Role="PaymentPointType" EntitySet="PaymentPointTypes" />
+            <End Role="PaymentPoint" EntitySet="PaymentPoints" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PaymentPoint_UserId" Association="storgageModel.fk_PaymentPoint_UserId">
+            <End Role="User" EntitySet="Users" />
+            <End Role="PaymentPoint" EntitySet="PaymentPoints" />
+          </AssociationSet>
+          <AssociationSet Name="fk_User_IncPaymentPoint" Association="storgageModel.fk_User_IncPaymentPoint">
+            <End Role="PaymentPoint" EntitySet="PaymentPoints" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="fk_User_OutPaymentPoint" Association="storgageModel.fk_User_OutPaymentPoint">
+            <End Role="PaymentPoint" EntitySet="PaymentPoints" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="RootDictionaries" EntityType="storgageModel.RootDictionary" />
+          <AssociationSet Name="FK_FilterRootDictionary_RootDictionary" Association="storgageModel.FK_FilterRootDictionary_RootDictionary">
+            <End Role="RootDictionary" EntitySet="RootDictionaries" />
+            <End Role="FilterRootDictionary" EntitySet="FilterRootDictionaries" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SizeType_Id" Association="storgageModel.fk_SizeType_Id">
+            <End Role="RootDictionary" EntitySet="RootDictionaries" />
+            <End Role="SizeType" EntitySet="SizeTypes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SpaceAccessType_Id" Association="storgageModel.fk_SpaceAccessType_Id">
+            <End Role="RootDictionary" EntitySet="RootDictionaries" />
+            <End Role="SpaceAccessType" EntitySet="SpaceAccessTypes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SpaceType_Id" Association="storgageModel.fk_SpaceType_Id">
+            <End Role="RootDictionary" EntitySet="RootDictionaries" />
+            <End Role="SpaceType" EntitySet="SpaceTypes" />
+          </AssociationSet>
+          <EntitySet Name="Abuses" EntityType="storgageModel.Abuse" />
+          <EntitySet Name="AbuseRatings" EntityType="storgageModel.AbuseRating" />
+          <EntitySet Name="AbuseSpaces" EntityType="storgageModel.AbuseSpace" />
+          <EntitySet Name="AbuseTypes" EntityType="storgageModel.AbuseType" />
+          <EntitySet Name="AbuseTypeDictionaries" EntityType="storgageModel.AbuseTypeDictionary" />
+          <AssociationSet Name="fk_Abuse_ReporterId" Association="storgageModel.fk_Abuse_ReporterId">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Abuse" EntitySet="Abuses" />
+          </AssociationSet>
+          <AssociationSet Name="fk_AbuseRating_AbuseId" Association="storgageModel.fk_AbuseRating_AbuseId">
+            <End Role="Abuse" EntitySet="Abuses" />
+            <End Role="AbuseRating" EntitySet="AbuseRatings" />
+          </AssociationSet>
+          <AssociationSet Name="fk_AbuseSpace_AbuseId" Association="storgageModel.fk_AbuseSpace_AbuseId">
+            <End Role="Abuse" EntitySet="Abuses" />
+            <End Role="AbuseSpace" EntitySet="AbuseSpaces" />
+          </AssociationSet>
+          <AssociationSet Name="fk_AbuseType_AbuseId" Association="storgageModel.fk_AbuseType_AbuseId">
+            <End Role="Abuse" EntitySet="Abuses" />
+            <End Role="AbuseType" EntitySet="AbuseTypes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_AbuseRating_RatingId" Association="storgageModel.fk_AbuseRating_RatingId">
+            <End Role="Rating" EntitySet="Ratings" />
+            <End Role="AbuseRating" EntitySet="AbuseRatings" />
+          </AssociationSet>
+          <AssociationSet Name="fk_AbuseSpace_SpaceId" Association="storgageModel.fk_AbuseSpace_SpaceId">
+            <End Role="Space" EntitySet="Spaces" />
+            <End Role="AbuseSpace" EntitySet="AbuseSpaces" />
+          </AssociationSet>
+          <AssociationSet Name="fk_AbuseType_TypeId" Association="storgageModel.fk_AbuseType_TypeId">
+            <End Role="AbuseTypeDictionary" EntitySet="AbuseTypeDictionaries" />
+            <End Role="AbuseType" EntitySet="AbuseTypes" />
+          </AssociationSet>
+          <EntitySet Name="Filters" EntityType="storgageModel.Filter" />
+          <AssociationSet Name="FK_Filter_User" Association="storgageModel.FK_Filter_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Filter" EntitySet="Filters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Filter_ZipCodeId" Association="storgageModel.FK_Filter_ZipCodeId">
+            <End Role="Zip" EntitySet="Zips" />
+            <End Role="Filter" EntitySet="Filters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FilterRootDictionary_Filter" Association="storgageModel.FK_FilterRootDictionary_Filter">
+            <End Role="Filter" EntitySet="Filters" />
+            <End Role="FilterRootDictionary" EntitySet="FilterRootDictionaries" />
+          </AssociationSet>
+          <FunctionImport Name="spSpaceGetForecastRate">
+            <Parameter Name="SizeTypeId" Mode="In" Type="Guid" />
+            <Parameter Name="ZipCode" Mode="In" Type="String" />
+            <Parameter Name="ForecastedRate" Mode="InOut" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="fnSpaceForecastRateTable" IsComposable="true" ReturnType="Collection(storgageModel.fnSpaceForecastRateTable_Result)">
+            <Parameter Name="SizeTypeId" Mode="In" Type="Guid" />
+            <Parameter Name="ZipId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          </EntityContainer>
+        <EntityType Name="SpaceAccessType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Spaces" Relationship="storgageModel.fk_Space_SpaceAccessTypeId" FromRole="SpaceAccessType" ToRole="Space" />
+          <Property Name="Synonym" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RootDictionary" Relationship="storgageModel.fk_SpaceAccessType_Id" FromRole="SpaceAccessType" ToRole="RootDictionary" />
+        </EntityType>
+        <Association Name="fk_User_PhoneVerificationStatusID">
+          <End Type="storgageModel.PhoneVerificationStatus" Role="PhoneVerificationStatu" Multiplicity="1" />
+          <End Type="storgageModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhoneVerificationStatu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="PhoneVerificationStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Space_SpaceAccessTypeId">
+          <End Type="storgageModel.SpaceAccessType" Role="SpaceAccessType" Multiplicity="1" />
+          <End Type="storgageModel.Space" Role="Space" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpaceAccessType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Space">
+              <PropertyRef Name="SpaceAccessTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Chat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="storgageModel.fk_Chat_UserId" FromRole="Chat" ToRole="User" />
+          <NavigationProperty Name="Messages" Relationship="storgageModel.fk_Message_ChatId1" FromRole="Chat" ToRole="Message" />
+          <NavigationProperty Name="ChatMembers" Relationship="storgageModel.fk_ChatMember_ChatId" FromRole="Chat" ToRole="ChatMember" />
+          <Property Name="SpaceId" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="Space" Relationship="storgageModel.fk_Chat_SpaceId" FromRole="Chat" ToRole="Space" />
+          <Property Name="ApprovedMessageOfferHistoryId" Type="Guid" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="LastMessageOfferId" Type="Guid" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="ApprovedMessageOfferHistory" Relationship="storgageModel.fk_Chat_ApprovedMessageOfferHistoryId" FromRole="Chat" ToRole="MessageOfferHistory" />
+          <NavigationProperty Name="LastMessageOffer" Relationship="storgageModel.fk_Chat_LastMessageOfferId" FromRole="Chat" ToRole="MessageOffer" />
+          <Property Name="LastModified" Type="DateTimeOffset" Nullable="false" Precision="7" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <Association Name="fk_Chat_UserId">
+          <End Type="storgageModel.User" Role="User" Multiplicity="1" />
+          <End Type="storgageModel.Chat" Role="Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Message_ChatId1">
+          <End Type="storgageModel.Chat" Role="Chat" Multiplicity="1" />
+          <End Type="storgageModel.Message" Role="Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chat">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="ChatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ChatMember">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChatId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Chat" Relationship="storgageModel.fk_ChatMember_ChatId" FromRole="ChatMember" ToRole="Chat" />
+          <NavigationProperty Name="User" Relationship="storgageModel.fk_ChatMember_UserId" FromRole="ChatMember" ToRole="User" />
+          <Property Name="AmountUnreadMessages" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MessageDeliveredStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Synonym" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Messages" Relationship="storgageModel.fk_Message_DeliveredStatusId" FromRole="MessageDeliveredStatu" ToRole="Message" />
+        </EntityType>
+        <Association Name="fk_ChatMember_ChatId">
+          <End Type="storgageModel.Chat" Role="Chat" Multiplicity="1" />
+          <End Type="storgageModel.ChatMember" Role="ChatMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chat">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChatMember">
+              <PropertyRef Name="ChatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ChatMember_UserId">
+          <End Type="storgageModel.User" Role="User" Multiplicity="1" />
+          <End Type="storgageModel.ChatMember" Role="ChatMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChatMember">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Message_DeliveredStatusId">
+          <End Type="storgageModel.MessageDeliveredStatus" Role="MessageDeliveredStatu" Multiplicity="1" />
+          <End Type="storgageModel.Message" Role="Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageDeliveredStatu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="DeliveredStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="fnMessageDeliveredStatus_Result">
+          <Property Type="Guid" Name="WasRead" Nullable="true" />
+          <Property Type="Guid" Name="WasSent" Nullable="true" />
+          <Property Type="Guid" Name="WasNotSent" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="MessageOffer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Rate" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="Message" Relationship="storgageModel.fk_MessageOffer_pk" FromRole="MessageOffer" ToRole="Message" />
+          <Property Name="RentPeriodId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="RentPeriodType" Relationship="storgageModel.Rent_Period_FK" FromRole="MessageOffer" ToRole="RentPeriodType" />
+          <NavigationProperty Name="MessageOfferHistories" Relationship="storgageModel.fk_MessageOfferHistory_MessageOffer" FromRole="MessageOffer" ToRole="MessageOfferHistory" />
+          <Property Name="CurrentMessageOfferHistory" Type="Guid" />
+          <NavigationProperty Name="MessageOfferHistory" Relationship="storgageModel.fk_MessageOffer_CurretMessageOfferHistory" FromRole="MessageOffer" ToRole="MessageOfferHistory" />
+          <Property Name="StopAt" Type="DateTimeOffset" Precision="7" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="RentSince" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Chats" Relationship="storgageModel.fk_Chat_LastMessageOfferId" FromRole="MessageOffer" ToRole="Chat" />
+        </EntityType>
+        <EntityType Name="MessageOfferStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Synonym" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MessageOfferHistories" Relationship="storgageModel.fk_MessageOfferHistory_MessageOfferStatus" FromRole="MessageOfferStatus" ToRole="MessageOfferHistory" />
+        </EntityType>
+        <Association Name="fk_MessageOffer_pk">
+          <End Type="storgageModel.Message" Role="Message" Multiplicity="1" />
+          <End Type="storgageModel.MessageOffer" Role="MessageOffer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Message">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessageOffer">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RentPeriodType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MessageOffers" Relationship="storgageModel.Rent_Period_FK" FromRole="RentPeriodType" ToRole="MessageOffer" />
+          <Property Name="Synonym" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="fk_Space_DefaultPhotoID1">
+          <End Type="storgageModel.PhotoLibrary" Role="PhotoLibrary" Multiplicity="0..1" />
+          <End Type="storgageModel.Space" Role="Space" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhotoLibrary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Space">
+              <PropertyRef Name="DefaultPhotoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Rent_Period_FK">
+          <End Type="storgageModel.RentPeriodType" Role="RentPeriodType" Multiplicity="1" />
+          <End Type="storgageModel.MessageOffer" Role="MessageOffer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RentPeriodType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessageOffer">
+              <PropertyRef Name="RentPeriodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Chat_SpaceId">
+          <End Type="storgageModel.Space" Role="Space" Multiplicity="1" />
+          <End Type="storgageModel.Chat" Role="Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Space">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="SpaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MessageOfferHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MessageOfferId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="StatusId" Type="Guid" Nullable="false" />
+          <Property Name="ChangedStatusDate" Type="DateTimeOffset" Nullable="false" Precision="7" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="MessageOffer" Relationship="storgageModel.fk_MessageOfferHistory_MessageOffer" FromRole="MessageOfferHistory" ToRole="MessageOffer" />
+          <NavigationProperty Name="MessageOfferStatus" Relationship="storgageModel.fk_MessageOfferHistory_MessageOfferStatus" FromRole="MessageOfferHistory" ToRole="MessageOfferStatus" />
+          <NavigationProperty Name="User" Relationship="storgageModel.fk_MessageOfferHistory_User" FromRole="MessageOfferHistory" ToRole="User" />
+          <NavigationProperty Name="MessageOffers" Relationship="storgageModel.fk_MessageOffer_CurretMessageOfferHistory" FromRole="MessageOfferHistory" ToRole="MessageOffer" />
+          <NavigationProperty Name="Rating" Relationship="storgageModel.fk_Rating_pk" FromRole="MessageOfferHistory" ToRole="Rating" />
+          <NavigationProperty Name="Chats" Relationship="storgageModel.fk_Chat_ApprovedMessageOfferHistoryId" FromRole="MessageOfferHistory" ToRole="Chat" />
+        </EntityType>
+        <Association Name="fk_MessageOfferHistory_MessageOffer">
+          <End Type="storgageModel.MessageOffer" Role="MessageOffer" Multiplicity="1" />
+          <End Type="storgageModel.MessageOfferHistory" Role="MessageOfferHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageOffer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessageOfferHistory">
+              <PropertyRef Name="MessageOfferId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MessageOfferHistory_MessageOfferStatus">
+          <End Type="storgageModel.MessageOfferStatus" Role="MessageOfferStatus" Multiplicity="1" />
+          <End Type="storgageModel.MessageOfferHistory" Role="MessageOfferHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageOfferStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessageOfferHistory">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MessageOfferHistory_User">
+          <End Type="storgageModel.User" Role="User" Multiplicity="1" />
+          <End Type="storgageModel.MessageOfferHistory" Role="MessageOfferHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessageOfferHistory">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Space_ZipId">
+          <End Type="storgageModel.Zip" Role="Zip" Multiplicity="0..1" />
+          <End Type="storgageModel.Space" Role="Space" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zip">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Space">
+              <PropertyRef Name="ZipId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EmailVerificationStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Synonym" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="storgageModel.fk_User_EmailVerificationStatusID" FromRole="EmailVerificationStatu" ToRole="User" />
+        </EntityType>
+        <Association Name="fk_User_EmailVerificationStatusID">
+          <End Type="storgageModel.EmailVerificationStatus" Role="EmailVerificationStatu" Multiplicity="1" />
+          <End Type="storgageModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailVerificationStatu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="EmailVerificationStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MessageOffer_CurretMessageOfferHistory">
+          <End Type="storgageModel.MessageOfferHistory" Role="MessageOfferHistory" Multiplicity="0..1" />
+          <End Type="storgageModel.MessageOffer" Role="MessageOffer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageOfferHistory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessageOffer">
+              <PropertyRef Name="CurrentMessageOfferHistory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Rating_pk">
+          <End Type="storgageModel.MessageOfferHistory" Role="MessageOfferHistory" Multiplicity="1" />
+          <End Type="storgageModel.Rating" Role="Rating" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MessageOfferHistory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rating">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Chat_ApprovedMessageOfferHistoryId">
+          <End Type="storgageModel.MessageOfferHistory" Role="MessageOfferHistory" Multiplicity="0..1" />
+          <End Type="storgageModel.Chat" Role="Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageOfferHistory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="ApprovedMessageOfferHistoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Chat_LastMessageOfferId">
+          <End Type="storgageModel.MessageOffer" Role="MessageOffer" Multiplicity="0..1" />
+          <End Type="storgageModel.Chat" Role="Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageOffer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="LastMessageOfferId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RefreshToken">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Issued" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="Expired" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="ProtectedTicket" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="storgageModel.fk_RefreshToken_UserId" FromRole="RefreshToken" ToRole="User" />
+        </EntityType>
+        <Association Name="fk_RefreshToken_UserId">
+          <End Type="storgageModel.User" Role="User" Multiplicity="1" />
+          <End Type="storgageModel.RefreshToken" Role="RefreshToken" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RefreshToken">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PaymentPoint">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="Number" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="TypeId" Type="Guid" Nullable="false" />
+          <Property Name="PaymentSystemId" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="PaymentPointType" Relationship="storgageModel.fk_PaymentPoint_PaymentPointTypeId" FromRole="PaymentPoint" ToRole="PaymentPointType" />
+          <NavigationProperty Name="User" Relationship="storgageModel.fk_PaymentPoint_UserId" FromRole="PaymentPoint" ToRole="User" />
+          <NavigationProperty Name="Users" Relationship="storgageModel.fk_User_IncPaymentPoint" FromRole="PaymentPoint" ToRole="User" />
+          <NavigationProperty Name="Users1" Relationship="storgageModel.fk_User_OutPaymentPoint" FromRole="PaymentPoint" ToRole="User" />
+        </EntityType>
+        <EntityType Name="PaymentPointType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Synonym" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PaymentPoints" Relationship="storgageModel.fk_PaymentPoint_PaymentPointTypeId" FromRole="PaymentPointType" ToRole="PaymentPoint" />
+        </EntityType>
+        <Association Name="fk_PaymentPoint_PaymentPointTypeId">
+          <End Type="storgageModel.PaymentPointType" Role="PaymentPointType" Multiplicity="1" />
+          <End Type="storgageModel.PaymentPoint" Role="PaymentPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentPointType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PaymentPoint">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PaymentPoint_UserId">
+          <End Type="storgageModel.User" Role="User" Multiplicity="1" />
+          <End Type="storgageModel.PaymentPoint" Role="PaymentPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentPoint">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_User_IncPaymentPoint">
+          <End Type="storgageModel.PaymentPoint" Role="PaymentPoint" Multiplicity="0..1" />
+          <End Type="storgageModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentPoint">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IncPaymentPointId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_User_OutPaymentPoint">
+          <End Type="storgageModel.PaymentPoint" Role="PaymentPoint" Multiplicity="0..1" />
+          <End Type="storgageModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentPoint">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="OutPaymentPointId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RootDictionary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="FilterRootDictionaries" Relationship="storgageModel.FK_FilterRootDictionary_RootDictionary" FromRole="RootDictionary" ToRole="FilterRootDictionary" />
+          <NavigationProperty Name="SizeType" Relationship="storgageModel.fk_SizeType_Id" FromRole="RootDictionary" ToRole="SizeType" />
+          <NavigationProperty Name="SpaceAccessType" Relationship="storgageModel.fk_SpaceAccessType_Id" FromRole="RootDictionary" ToRole="SpaceAccessType" />
+          <NavigationProperty Name="SpaceType" Relationship="storgageModel.fk_SpaceType_Id" FromRole="RootDictionary" ToRole="SpaceType" />
+        </EntityType>
+        <Association Name="FK_FilterRootDictionary_RootDictionary">
+          <End Type="storgageModel.RootDictionary" Role="RootDictionary" Multiplicity="1" />
+          <End Type="storgageModel.FilterRootDictionary" Role="FilterRootDictionary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RootDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FilterRootDictionary">
+              <PropertyRef Name="RootDictionaryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SizeType_Id">
+          <End Type="storgageModel.RootDictionary" Role="RootDictionary" Multiplicity="1" />
+          <End Type="storgageModel.SizeType" Role="SizeType" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="RootDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SizeType">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SpaceAccessType_Id">
+          <End Type="storgageModel.RootDictionary" Role="RootDictionary" Multiplicity="1" />
+          <End Type="storgageModel.SpaceAccessType" Role="SpaceAccessType" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="RootDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SpaceAccessType">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SpaceType_Id">
+          <End Type="storgageModel.RootDictionary" Role="RootDictionary" Multiplicity="1" />
+          <End Type="storgageModel.SpaceType" Role="SpaceType" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="RootDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SpaceType">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Abuse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Message" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="ReportedAt" Type="DateTimeOffset" Precision="7" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="ReporterId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Reporter" Relationship="storgageModel.fk_Abuse_ReporterId" FromRole="Abuse" ToRole="User" />
+          <NavigationProperty Name="AbuseRatings" Relationship="storgageModel.fk_AbuseRating_AbuseId" FromRole="Abuse" ToRole="AbuseRating" />
+          <NavigationProperty Name="AbuseSpaces" Relationship="storgageModel.fk_AbuseSpace_AbuseId" FromRole="Abuse" ToRole="AbuseSpace" />
+          <NavigationProperty Name="AbuseTypes" Relationship="storgageModel.fk_AbuseType_AbuseId" FromRole="Abuse" ToRole="AbuseType" />
+          <Property Name="FileName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AbuseRating">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AbuseId" Type="Guid" Nullable="false" />
+          <Property Name="RatingId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Abuse" Relationship="storgageModel.fk_AbuseRating_AbuseId" FromRole="AbuseRating" ToRole="Abuse" />
+          <NavigationProperty Name="Rating" Relationship="storgageModel.fk_AbuseRating_RatingId" FromRole="AbuseRating" ToRole="Rating" />
+        </EntityType>
+        <EntityType Name="AbuseSpace">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AbuseId" Type="Guid" Nullable="false" />
+          <Property Name="SpaceId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Abuse" Relationship="storgageModel.fk_AbuseSpace_AbuseId" FromRole="AbuseSpace" ToRole="Abuse" />
+          <NavigationProperty Name="Space" Relationship="storgageModel.fk_AbuseSpace_SpaceId" FromRole="AbuseSpace" ToRole="Space" />
+        </EntityType>
+        <EntityType Name="AbuseType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AbuseId" Type="Guid" Nullable="false" />
+          <Property Name="TypeId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Abuse" Relationship="storgageModel.fk_AbuseType_AbuseId" FromRole="AbuseType" ToRole="Abuse" />
+          <NavigationProperty Name="AbuseTypeDictionary" Relationship="storgageModel.fk_AbuseType_TypeId" FromRole="AbuseType" ToRole="AbuseTypeDictionary" />
+        </EntityType>
+        <EntityType Name="AbuseTypeDictionary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Synonym" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AbuseTypes" Relationship="storgageModel.fk_AbuseType_TypeId" FromRole="AbuseTypeDictionary" ToRole="AbuseType" />
+        </EntityType>
+        <Association Name="fk_Abuse_ReporterId">
+          <End Type="storgageModel.User" Role="User" Multiplicity="1" />
+          <End Type="storgageModel.Abuse" Role="Abuse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Abuse">
+              <PropertyRef Name="ReporterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_AbuseRating_AbuseId">
+          <End Type="storgageModel.Abuse" Role="Abuse" Multiplicity="1" />
+          <End Type="storgageModel.AbuseRating" Role="AbuseRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Abuse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AbuseRating">
+              <PropertyRef Name="AbuseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_AbuseSpace_AbuseId">
+          <End Type="storgageModel.Abuse" Role="Abuse" Multiplicity="1" />
+          <End Type="storgageModel.AbuseSpace" Role="AbuseSpace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Abuse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AbuseSpace">
+              <PropertyRef Name="AbuseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_AbuseType_AbuseId">
+          <End Type="storgageModel.Abuse" Role="Abuse" Multiplicity="1" />
+          <End Type="storgageModel.AbuseType" Role="AbuseType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Abuse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AbuseType">
+              <PropertyRef Name="AbuseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_AbuseRating_RatingId">
+          <End Type="storgageModel.Rating" Role="Rating" Multiplicity="1" />
+          <End Type="storgageModel.AbuseRating" Role="AbuseRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rating">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AbuseRating">
+              <PropertyRef Name="RatingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_AbuseSpace_SpaceId">
+          <End Type="storgageModel.Space" Role="Space" Multiplicity="1" />
+          <End Type="storgageModel.AbuseSpace" Role="AbuseSpace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Space">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AbuseSpace">
+              <PropertyRef Name="SpaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_AbuseType_TypeId">
+          <End Type="storgageModel.AbuseTypeDictionary" Role="AbuseTypeDictionary" Multiplicity="1" />
+          <End Type="storgageModel.AbuseType" Role="AbuseType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AbuseTypeDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AbuseType">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Filter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="BoundingBox" Type="Geography" Nullable="false" />
+          <Property Name="MinPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="MaxPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="RentStartDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="CheckSizeType" Type="Boolean" Nullable="false" />
+          <Property Name="CheckType" Type="Boolean" Nullable="false" />
+          <Property Name="CheckAccessType" Type="Boolean" Nullable="false" />
+          <Property Name="Location" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCodeId" Type="Guid" />
+          <NavigationProperty Name="User" Relationship="storgageModel.FK_Filter_User" FromRole="Filter" ToRole="User" />
+          <NavigationProperty Name="Zip" Relationship="storgageModel.FK_Filter_ZipCodeId" FromRole="Filter" ToRole="Zip" />
+          <NavigationProperty Name="FilterRootDictionaries" Relationship="storgageModel.FK_FilterRootDictionary_Filter" FromRole="Filter" ToRole="FilterRootDictionary" />
+          <Property Name="TopLatitude" Type="Double" Nullable="false" />
+          <Property Name="BottomLatitude" Type="Double" Nullable="false" />
+          <Property Name="LeftLongitude" Type="Double" Nullable="false" />
+          <Property Name="RightLongitude" Type="Double" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Filter_User">
+          <End Type="storgageModel.User" Role="User" Multiplicity="1" />
+          <End Type="storgageModel.Filter" Role="Filter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Filter">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Filter_ZipCodeId">
+          <End Type="storgageModel.Zip" Role="Zip" Multiplicity="0..1" />
+          <End Type="storgageModel.Filter" Role="Filter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zip">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Filter">
+              <PropertyRef Name="ZipCodeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FilterRootDictionary_Filter">
+          <End Type="storgageModel.Filter" Role="Filter" Multiplicity="1" />
+          <End Type="storgageModel.FilterRootDictionary" Role="FilterRootDictionary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Filter">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FilterRootDictionary">
+              <PropertyRef Name="FilterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="fnSpaceForecastRateTable_Result">
+          <Property Type="Decimal" Name="MedianDisc" Nullable="false" Precision="19" Scale="4" />
+          <Property Type="Int32" Name="cntRate" Nullable="true" />
+        </ComplexType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="storgageModelStoreContainer" CdmEntityContainer="storgageEntities">
+          <EntitySetMapping Name="FilterRootDictionaries">
+            <EntityTypeMapping TypeName="storgageModel.FilterRootDictionary">
+              <MappingFragment StoreEntitySet="FilterRootDictionary">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FilterId" ColumnName="FilterId" />
+                <ScalarProperty Name="RootDictionaryId" ColumnName="RootDictionaryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="storgageModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ProcessedDate" ColumnName="ProcessedDate" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="SpaceId" ColumnName="SpaceId" />
+                <ScalarProperty Name="SenderId" ColumnName="SenderId" />
+                <ScalarProperty Name="RecepientToken" ColumnName="RecepientToken" />
+                <ScalarProperty Name="SenderToken" ColumnName="SenderToken" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="storgageModel.Message">
+              <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="DeliveredStatusId" ColumnName="DeliveredStatusId" />
+                <ScalarProperty Name="ChatId" ColumnName="ChatId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ReceivedDate" ColumnName="ReceivedDate" />
+                <ScalarProperty Name="SentDate" ColumnName="SentDate" />
+                <ScalarProperty Name="MessageText" ColumnName="Message" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhoneVerificationStatus">
+            <EntityTypeMapping TypeName="storgageModel.PhoneVerificationStatus">
+              <MappingFragment StoreEntitySet="PhoneVerificationStatus">
+                <ScalarProperty Name="Synonym" ColumnName="Synonym" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhotoLibraries">
+            <EntityTypeMapping TypeName="storgageModel.PhotoLibrary">
+              <MappingFragment StoreEntitySet="PhotoLibrary">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="SpaceId" ColumnName="SpaceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ratings">
+            <EntityTypeMapping TypeName="storgageModel.Rating">
+              <MappingFragment StoreEntitySet="Rating">
+                <ScalarProperty Name="RepliedAt" ColumnName="RepliedAt" />
+                <ScalarProperty Name="SpaceOwnerReply" ColumnName="SpaceOwnerReply" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Receipts">
+            <EntityTypeMapping TypeName="storgageModel.Receipt">
+              <MappingFragment StoreEntitySet="Receipt">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="SentDate" ColumnName="SentDate" />
+                <ScalarProperty Name="StripeTransactionId" ColumnName="StripeTransactionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SizeTypes">
+            <EntityTypeMapping TypeName="storgageModel.SizeType">
+              <MappingFragment StoreEntitySet="SizeType">
+                <ScalarProperty Name="Synonym" ColumnName="Synonym" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Spaces">
+            <EntityTypeMapping TypeName="storgageModel.Space">
+              <MappingFragment StoreEntitySet="Space">
+                <ScalarProperty Name="IsOccupied" ColumnName="IsOccupied" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="AvailableSince" ColumnName="AvailableSince" />
+                <ScalarProperty Name="ZipId" ColumnName="ZipId" />
+                <ScalarProperty Name="ShortAddress" ColumnName="ShortAddress" />
+                <ScalarProperty Name="FullAddress" ColumnName="FullAddress" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DefaultPhotoID" ColumnName="DefaultPhotoID" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="SpaceAccessTypeId" ColumnName="SpaceAccessTypeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="SizeTypeId" ColumnName="SizeTypeId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Decription" ColumnName="Decription" />
+                <ScalarProperty Name="IsListed" ColumnName="IsListed" />
+                <ScalarProperty Name="SpaceTypeId" ColumnName="SpaceTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpaceBusies">
+            <EntityTypeMapping TypeName="storgageModel.SpaceBusy">
+              <MappingFragment StoreEntitySet="SpaceBusy">
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SpaceId" ColumnName="SpaceId" />
+                <ScalarProperty Name="NextSpaceBusyID" ColumnName="NextSpaceBusyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpaceTypes">
+            <EntityTypeMapping TypeName="storgageModel.SpaceType">
+              <MappingFragment StoreEntitySet="SpaceType">
+                <ScalarProperty Name="Synonym" ColumnName="Synonym" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrainingSets">
+            <EntityTypeMapping TypeName="storgageModel.TrainingSet">
+              <MappingFragment StoreEntitySet="TrainingSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="ZipId" ColumnName="ZipId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Accessebility" ColumnName="Accessebility" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="storgageModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="StripeAccountId" ColumnName="StripeAccountId" />
+                <ScalarProperty Name="TotalUnreadMessages" ColumnName="TotalUnreadMessages" />
+                <ScalarProperty Name="StripeCustomerId" ColumnName="StripeCustomerId" />
+                <ScalarProperty Name="LockoutEndDate" ColumnName="LockoutEndDate" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="IncPaymentPointId" ColumnName="IncPaymentPoint" />
+                <ScalarProperty Name="OutPaymentPointId" ColumnName="OutPaymentPoint" />
+                <ScalarProperty Name="IsExternal" ColumnName="IsExternal" />
+                <ScalarProperty Name="EmailVerificationStatusID" ColumnName="EmailVerificationStatusID" />
+                <ScalarProperty Name="FacebookID" ColumnName="FacebookID" />
+                <ScalarProperty Name="CountRating" ColumnName="CountRating" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="AvatarLink" ColumnName="AvatarLink" />
+                <ScalarProperty Name="PhoneVerificationStatusID" ColumnName="PhoneVerificationStatusID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="PaymentSystemSecret" ColumnName="PaymentSystemSecret" />
+                <ScalarProperty Name="AvgRate" ColumnName="AvgRate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDevices">
+            <EntityTypeMapping TypeName="storgageModel.UserDevice">
+              <MappingFragment StoreEntitySet="UserDevice">
+                <ScalarProperty Name="IsPushNotificationEnabled" ColumnName="IsPushNotificationEnabled" />
+                <ScalarProperty Name="TopicEndpoint" ColumnName="TopicEndpoint" />
+                <ScalarProperty Name="SubscriptionEndpoint" ColumnName="SubscriptionEndpoint" />
+                <ScalarProperty Name="MobileEndpoint" ColumnName="MobileEndpoint" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PushNotificationToken" ColumnName="PushNotificationToken" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zips">
+            <EntityTypeMapping TypeName="storgageModel.Zip">
+              <MappingFragment StoreEntitySet="Zip">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ZipCode" ColumnName="Zip" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpaceAccessTypes">
+            <EntityTypeMapping TypeName="storgageModel.SpaceAccessType">
+              <MappingFragment StoreEntitySet="SpaceAccessType">
+                <ScalarProperty Name="Synonym" ColumnName="Synonym" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Chats">
+            <EntityTypeMapping TypeName="storgageModel.Chat">
+              <MappingFragment StoreEntitySet="Chat">
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="LastMessageOfferId" ColumnName="LastMessageOfferId" />
+                <ScalarProperty Name="ApprovedMessageOfferHistoryId" ColumnName="ApprovedMessageOfferHistoryId" />
+                <ScalarProperty Name="SpaceId" ColumnName="SpaceId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChatMembers">
+            <EntityTypeMapping TypeName="storgageModel.ChatMember">
+              <MappingFragment StoreEntitySet="ChatMember">
+                <ScalarProperty Name="AmountUnreadMessages" ColumnName="AmountUnreadMessages" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ChatId" ColumnName="ChatId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MessageDeliveredStatus2">
+            <EntityTypeMapping TypeName="storgageModel.MessageDeliveredStatus">
+              <MappingFragment StoreEntitySet="MessageDeliveredStatus">
+                <ScalarProperty Name="Synonym" ColumnName="Synonym" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="fnMessageDeliveredStatus" FunctionName="storgageModel.Store.fnMessageDeliveredStatus">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="storgageModel.fnMessageDeliveredStatus_Result">
+                <ScalarProperty Name="WasRead" ColumnName="WasRead" />
+                <ScalarProperty Name="WasSent" ColumnName="WasSent" />
+                <ScalarProperty Name="WasNotSent" ColumnName="WasNotSent" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="MessageOffers">
+            <EntityTypeMapping TypeName="storgageModel.MessageOffer">
+              <MappingFragment StoreEntitySet="MessageOffer">
+                <ScalarProperty Name="CurrentMessageOfferHistory" ColumnName="CurretMessageOfferHistory" />
+                <ScalarProperty Name="RentSince" ColumnName="RentSince" />
+                <ScalarProperty Name="StopAt" ColumnName="StopAt" />
+                <ScalarProperty Name="RentPeriodId" ColumnName="RentPeriodId" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MessageOfferStatus">
+            <EntityTypeMapping TypeName="storgageModel.MessageOfferStatus">
+              <MappingFragment StoreEntitySet="MessageOfferStatus">
+                <ScalarProperty Name="Synonym" ColumnName="Synonym" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RentPeriodTypes">
+            <EntityTypeMapping TypeName="storgageModel.RentPeriodType">
+              <MappingFragment StoreEntitySet="RentPeriodType">
+                <ScalarProperty Name="Synonym" ColumnName="Synonym" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MessageOfferHistories">
+            <EntityTypeMapping TypeName="storgageModel.MessageOfferHistory">
+              <MappingFragment StoreEntitySet="MessageOfferHistory">
+                <ScalarProperty Name="ChangedStatusDate" ColumnName="ChangedStatusDate" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="MessageOfferId" ColumnName="MessageOfferId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailVerificationStatus">
+            <EntityTypeMapping TypeName="storgageModel.EmailVerificationStatus">
+              <MappingFragment StoreEntitySet="EmailVerificationStatus">
+                <ScalarProperty Name="Synonym" ColumnName="Synonym" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spUserDel" FunctionName="storgageModel.Store.spUserDel" />
+          <EntitySetMapping Name="RefreshTokens">
+            <EntityTypeMapping TypeName="storgageModel.RefreshToken">
+              <MappingFragment StoreEntitySet="RefreshToken">
+                <ScalarProperty Name="ProtectedTicket" ColumnName="ProtectedTicket" />
+                <ScalarProperty Name="Expired" ColumnName="Expired" />
+                <ScalarProperty Name="Issued" ColumnName="Issued" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentPoints">
+            <EntityTypeMapping TypeName="storgageModel.PaymentPoint">
+              <MappingFragment StoreEntitySet="PaymentPoint">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="PaymentSystemId" ColumnName="PaymentSystemId" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentPointTypes">
+            <EntityTypeMapping TypeName="storgageModel.PaymentPointType">
+              <MappingFragment StoreEntitySet="PaymentPointType">
+                <ScalarProperty Name="Synonym" ColumnName="Synonym" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RootDictionaries">
+            <EntityTypeMapping TypeName="storgageModel.RootDictionary">
+              <MappingFragment StoreEntitySet="RootDictionary">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Abuses">
+            <EntityTypeMapping TypeName="storgageModel.Abuse">
+              <MappingFragment StoreEntitySet="Abuse">
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="ReporterId" ColumnName="ReporterId" />
+                <ScalarProperty Name="ReportedAt" ColumnName="ReportedAt" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AbuseRatings">
+            <EntityTypeMapping TypeName="storgageModel.AbuseRating">
+              <MappingFragment StoreEntitySet="AbuseRating">
+                <ScalarProperty Name="RatingId" ColumnName="RatingId" />
+                <ScalarProperty Name="AbuseId" ColumnName="AbuseId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AbuseSpaces">
+            <EntityTypeMapping TypeName="storgageModel.AbuseSpace">
+              <MappingFragment StoreEntitySet="AbuseSpace">
+                <ScalarProperty Name="SpaceId" ColumnName="SpaceId" />
+                <ScalarProperty Name="AbuseId" ColumnName="AbuseId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AbuseTypes">
+            <EntityTypeMapping TypeName="storgageModel.AbuseType">
+              <MappingFragment StoreEntitySet="AbuseType">
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="AbuseId" ColumnName="AbuseId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AbuseTypeDictionaries">
+            <EntityTypeMapping TypeName="storgageModel.AbuseTypeDictionary">
+              <MappingFragment StoreEntitySet="AbuseTypeDictionary">
+                <ScalarProperty Name="Synonym" ColumnName="Synonym" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Filters">
+            <EntityTypeMapping TypeName="storgageModel.Filter">
+              <MappingFragment StoreEntitySet="Filter">
+                <ScalarProperty Name="RightLongitude" ColumnName="RightLongitude" />
+                <ScalarProperty Name="LeftLongitude" ColumnName="LeftLongitude" />
+                <ScalarProperty Name="BottomLatitude" ColumnName="BottomLatitude" />
+                <ScalarProperty Name="TopLatitude" ColumnName="TopLatitude" />
+                <ScalarProperty Name="ZipCodeId" ColumnName="ZipCodeId" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="CheckAccessType" ColumnName="CheckAccessType" />
+                <ScalarProperty Name="CheckType" ColumnName="CheckType" />
+                <ScalarProperty Name="CheckSizeType" ColumnName="CheckSizeType" />
+                <ScalarProperty Name="RentStartDate" ColumnName="RentStartDate" />
+                <ScalarProperty Name="MaxPrice" ColumnName="MaxPrice" />
+                <ScalarProperty Name="MinPrice" ColumnName="MinPrice" />
+                <ScalarProperty Name="BoundingBox" ColumnName="BoundingBox" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spSpaceGetForecastRate" FunctionName="storgageModel.Store.spSpaceGetForecastRate" />
+          <FunctionImportMapping FunctionImportName="fnSpaceForecastRateTable" FunctionName="storgageModel.Store.fnSpaceForecastRateTable">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="storgageModel.fnSpaceForecastRateTable_Result">
+                <ScalarProperty Name="MedianDisc" ColumnName="MedianDisc" />
+                <ScalarProperty Name="cntRate" ColumnName="cntRate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

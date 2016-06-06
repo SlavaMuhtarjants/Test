@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b6bc1dafca434e8abe53614f09f5931b" Name="Diagram1" ZoomLevel="85">
+        <EntityTypeShape EntityType="storgageModel.FilterRootDictionary" Width="1.5" PointX="8.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="storgageModel.Invoice" Width="1.5" PointX="2.75" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="storgageModel.Message" Width="1.5" PointX="11" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="storgageModel.PhoneVerificationStatus" Width="1.5" PointX="1.25" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="storgageModel.PhotoLibrary" Width="1.5" PointX="8" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="storgageModel.Rating" Width="1.5" PointX="2.75" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="storgageModel.Receipt" Width="1.5" PointX="5" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="storgageModel.SizeType" Width="1.5" PointX="3.5" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="storgageModel.Space" Width="1.5" PointX="5.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="storgageModel.SpaceBusy" Width="1.5" PointX="8" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="storgageModel.SpaceType" Width="1.5" PointX="3.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="storgageModel.TrainingSet" Width="1.5" PointX="5.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="storgageModel.User" Width="1.5" PointX="0.5" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="storgageModel.UserDevice" Width="1.5" PointX="2.75" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="storgageModel.Zip" Width="1.5" PointX="3.5" PointY="0.625" IsExpanded="true" />
+        <AssociationConnector Association="storgageModel.fk_Invoice_SenderId" ManuallyRouted="false" />
+        <AssociationConnector Association="storgageModel.fk_Invoice_SpaceId" ManuallyRouted="false" />
+        <AssociationConnector Association="storgageModel.fk_Receipt_InvoiceId" ManuallyRouted="false" />
+        <AssociationConnector Association="storgageModel.fk_Message_SenderId" ManuallyRouted="false" />
+        <AssociationConnector Association="storgageModel.fk_PhotoLibrary_SpaceId" ManuallyRouted="false" />
+        <AssociationConnector Association="storgageModel.fk_Space_SizeTypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="storgageModel.fk_Space_SpaceTypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="storgageModel.fk_Space_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="storgageModel.fk_SpaceBusy_SpaceId" ManuallyRouted="false" />
+        <AssociationConnector Association="storgageModel.fk_SpaceBusy_NextSpaceBusyID" ManuallyRouted="false" />
+        <AssociationConnector Association="storgageModel.fk_TrainingSet_ZipId" ManuallyRouted="false" />
+        <AssociationConnector Association="storgageModel.fk_UserDevice_UserId" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="storgageModel.SpaceAccessType" Width="1.5" PointX="0.75" PointY="3.875" />
+        <AssociationConnector Association="storgageModel.fk_User_PhoneVerificationStatusID" />
+        <AssociationConnector Association="storgageModel.fk_Space_SpaceAccessTypeId" />
+        <EntityTypeShape EntityType="storgageModel.Chat" Width="1.5" PointX="13.25" PointY="10.75" />
+        <AssociationConnector Association="storgageModel.fk_Chat_UserId" />
+        <AssociationConnector Association="storgageModel.fk_Message_ChatId1" />
+        <EntityTypeShape EntityType="storgageModel.ChatMember" Width="1.5" PointX="15.5" PointY="13.125" />
+        <EntityTypeShape EntityType="storgageModel.MessageDeliveredStatus" Width="1.5" PointX="9.375" PointY="0.75" />
+        <AssociationConnector Association="storgageModel.fk_ChatMember_ChatId" />
+        <AssociationConnector Association="storgageModel.fk_ChatMember_UserId" />
+        <AssociationConnector Association="storgageModel.fk_Message_DeliveredStatusId" ManuallyRouted="false" >
+        </AssociationConnector>
+        <EntityTypeShape EntityType="storgageModel.MessageOffer" Width="1.5" PointX="13.5" PointY="15.75" />
+        <EntityTypeShape EntityType="storgageModel.MessageOfferStatus" Width="1.5" PointX="11" PointY="17.25" />
+        <AssociationConnector Association="storgageModel.fk_MessageOffer_pk" />
+        <EntityTypeShape EntityType="storgageModel.RentPeriodType" Width="1.5" PointX="11.375" PointY="0.75" />
+        <AssociationConnector Association="storgageModel.fk_Space_DefaultPhotoID1" />
+        <AssociationConnector Association="storgageModel.Rent_Period_FK" />
+        <AssociationConnector Association="storgageModel.fk_Chat_SpaceId" />
+        <EntityTypeShape EntityType="storgageModel.MessageOfferHistory" Width="1.5" PointX="15.875" PointY="16.5" />
+        <AssociationConnector Association="storgageModel.fk_MessageOfferHistory_MessageOffer" />
+        <AssociationConnector Association="storgageModel.fk_MessageOfferHistory_MessageOfferStatus" />
+        <AssociationConnector Association="storgageModel.fk_MessageOfferHistory_User" />
+        <AssociationConnector Association="storgageModel.fk_Space_ZipId" />
+        <EntityTypeShape EntityType="storgageModel.EmailVerificationStatus" Width="1.5" PointX="6.375" PointY="3.875" />
+        <AssociationConnector Association="storgageModel.fk_User_EmailVerificationStatusID" />
+        <AssociationConnector Association="storgageModel.fk_MessageOffer_CurretMessageOfferHistory" />
+        <AssociationConnector Association="storgageModel.fk_Rating_pk" />
+        <AssociationConnector Association="storgageModel.fk_Chat_ApprovedMessageOfferHistoryId" />
+        <AssociationConnector Association="storgageModel.fk_Chat_LastMessageOfferId" />
+        <EntityTypeShape EntityType="storgageModel.RefreshToken" Width="1.5" PointX="2.875" PointY="10.375" />
+        <AssociationConnector Association="storgageModel.fk_RefreshToken_UserId" />
+        <EntityTypeShape EntityType="storgageModel.PaymentPoint" Width="1.5" PointX="1.25" PointY="27.5" />
+        <EntityTypeShape EntityType="storgageModel.PaymentPointType" Width="1.5" PointX="1.25" PointY="32" />
+        <AssociationConnector Association="storgageModel.fk_PaymentPoint_PaymentPointTypeId" />
+        <AssociationConnector Association="storgageModel.fk_PaymentPoint_UserId" />
+        <AssociationConnector Association="storgageModel.fk_User_IncPaymentPoint" />
+        <AssociationConnector Association="storgageModel.fk_User_OutPaymentPoint" />
+        <EntityTypeShape EntityType="storgageModel.RootDictionary" Width="1.5" PointX="0.75" PointY="9" />
+        <AssociationConnector Association="storgageModel.FK_FilterRootDictionary_RootDictionary" />
+        <AssociationConnector Association="storgageModel.fk_SizeType_Id" />
+        <AssociationConnector Association="storgageModel.fk_SpaceAccessType_Id" />
+        <AssociationConnector Association="storgageModel.fk_SpaceType_Id" />
+        <EntityTypeShape EntityType="storgageModel.Abuse" Width="1.5" PointX="2.75" PointY="40" />
+        <EntityTypeShape EntityType="storgageModel.AbuseRating" Width="1.5" PointX="5" PointY="30.875" />
+        <EntityTypeShape EntityType="storgageModel.AbuseSpace" Width="1.5" PointX="8" PointY="24.5" />
+        <EntityTypeShape EntityType="storgageModel.AbuseType" Width="1.5" PointX="5" PointY="40.375" />
+        <EntityTypeShape EntityType="storgageModel.AbuseTypeDictionary" Width="1.5" PointX="2.75" PointY="44.375" />
+        <AssociationConnector Association="storgageModel.fk_Abuse_ReporterId" />
+        <AssociationConnector Association="storgageModel.fk_AbuseRating_AbuseId" />
+        <AssociationConnector Association="storgageModel.fk_AbuseSpace_AbuseId" />
+        <AssociationConnector Association="storgageModel.fk_AbuseType_AbuseId" />
+        <AssociationConnector Association="storgageModel.fk_AbuseRating_RatingId" />
+        <AssociationConnector Association="storgageModel.fk_AbuseSpace_SpaceId" />
+        <AssociationConnector Association="storgageModel.fk_AbuseType_TypeId" />
+        <EntityTypeShape EntityType="storgageModel.Filter" Width="1.5" PointX="8.75" PointY="4.5" />
+        <AssociationConnector Association="storgageModel.FK_Filter_User" />
+        <AssociationConnector Association="storgageModel.FK_Filter_ZipCodeId" />
+        <AssociationConnector Association="storgageModel.FK_FilterRootDictionary_Filter" />
+        </Diagram>  
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
